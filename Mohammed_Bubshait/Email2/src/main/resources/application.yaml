@@ -1,0 +1,27 @@
+
+api:
+  config:
+    api2-url: ${API2_URL}
+
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: project02sender@gmail.com
+    password: fyauuhbligfbbryz
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    smtp:
+      debug: true
