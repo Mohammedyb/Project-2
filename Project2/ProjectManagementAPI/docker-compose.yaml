@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    container_name: grafana
+    depends_on:
+      - loki
+    volumes:
+      - grafanadata:/var/lib/grafana
+
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - 3100:3100
+    container_name: loki
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./container_config/promtail-config.yaml:/etc/promtail/promtail-config.yaml
+    command: -config.file=/etc/promtail/promtail-config.yaml
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/etc/prometheus/
+      - prometheusdata:/prometheus
+    container_name: prometheus
+
+  api:
+    image: projectmanagementapi
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      - DB_URL=jdbc:postgresql://postgres:5432/postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=p@$$w0rd123
+    depends_on:
+      - postgres
+    container_name: api
+    logging:
+      driver: json-file
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=p@$$w0rd
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    container_name: postgres_container
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+
+volumes:
+  pgdata:
+    driver: local
+  prometheusdata:
+    driver: local
+  grafanadata:
+    driver: local
