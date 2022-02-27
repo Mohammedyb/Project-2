@@ -27,6 +27,9 @@ public class MasterService {
 
     private TaskProgressRepository taskProgressRepository;
 
+    public MasterService() {
+    }
+
     @Autowired
     public MasterService(ProjectRepository projectRepository, AssignRepository assignRepository, MeetingRepository meetingRepository,
                          TaskRepository taskRepository, TaskProgressRepository taskProgressRepository) {
@@ -34,6 +37,26 @@ public class MasterService {
         this.assignRepository = assignRepository;
         this.meetingRepository = meetingRepository;
         this.taskRepository = taskRepository;
+        this.taskProgressRepository = taskProgressRepository;
+    }
+
+    public void setProjectRepository(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
+    }
+
+    public void setAssignRepository(AssignRepository assignRepository) {
+        this.assignRepository = assignRepository;
+    }
+
+    public void setMeetingRepository(MeetingRepository meetingRepository) {
+        this.meetingRepository = meetingRepository;
+    }
+
+    public void setTaskRepository(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+
+    public void setTaskProgressRepository(TaskProgressRepository taskProgressRepository) {
         this.taskProgressRepository = taskProgressRepository;
     }
 
@@ -58,7 +81,7 @@ public class MasterService {
 
     /**
      * Assign members to task
-     * @param assignProject with project Id, project manager id, assign user id, & assign user name
+     * @param assignProject with project id, project manager id, assign user id, & assign user name
      * @return post that have been created
      */
     public AssignProject save(AssignProject assignProject) {
@@ -112,7 +135,6 @@ public class MasterService {
      * Remove member from task by user Id
      *
      * @param userId the user id
-     * @return removing the member from task
      */
     public void removeById(Integer userId) {
         assignRepository.deleteAssignProjectByAssignUserId(userId);
@@ -124,4 +146,6 @@ public class MasterService {
      * @return all progress posts
      */
     public List<TaskProgress> getAllProgress() { return taskProgressRepository.findAll(); }
+
+
 }

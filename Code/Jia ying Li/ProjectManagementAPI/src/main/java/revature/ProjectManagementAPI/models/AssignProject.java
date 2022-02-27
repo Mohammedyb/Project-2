@@ -1,7 +1,16 @@
 package revature.ProjectManagementAPI.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "assign_project")
 public class AssignProject {
@@ -23,54 +32,4 @@ public class AssignProject {
     @Column(name = "assign_user_name")
     private String assignUserName;
 
-    public String getAssignUserName() {
-        return assignUserName;
-    }
-
-    public void setAssignUserName(String assignUserName) {
-        this.assignUserName = assignUserName;
-    }
-
-    public Integer getAssignUserId() {
-        return assignUserId;
-    }
-
-    public void setAssignUserId(Integer assignUserId) {
-        this.assignUserId = assignUserId;
-    }
-
-    public Integer getProjectManager() {
-        return projectManager;
-    }
-
-    public void setProjectManager(Integer projectManager) {
-        this.projectManager = projectManager;
-    }
-
-    public Integer getProjectsId() {
-        return projectsId;
-    }
-
-    public void setProjectsId(Integer projectsId) {
-        this.projectsId = projectsId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "AssignProject{" +
-                "id=" + id +
-                ", projectsId=" + projectsId +
-                ", projectManager=" + projectManager +
-                ", assignUserId=" + assignUserId +
-                ", assignUserName='" + assignUserName + '\'' +
-                '}';
-    }
 }

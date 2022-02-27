@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("master")
 public class ScrumMasterController {
 
-    private MasterService masterService;
+    private final MasterService masterService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ScrumMasterController.class);
 
@@ -126,7 +126,7 @@ public class ScrumMasterController {
 
     /**
      * Assign members to task
-     * @param assignProject with project Id, project manager id, assign user id, & assign user name
+     * @param assignProject with project id, project manager id, assign user id, & assign user names
      * @return post that have been created
      */
     @PostMapping(value = "/assign", consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -146,6 +146,6 @@ public class ScrumMasterController {
     public ResponseEntity<String> removeByUserId(@PathVariable(value = "id") Integer id) {
         LOGGER.info("Master is removing a member");
         masterService.removeById(id);
-        return new ResponseEntity<String>("Member with user ID " + id + " have been removed", HttpStatus.OK);
+        return new ResponseEntity<>("Member with user ID " + id + " have been removed", HttpStatus.OK);
     }
 }

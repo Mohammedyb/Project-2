@@ -1,5 +1,6 @@
 package revature.ProjectManagementAPI.service;
 
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import revature.ProjectManagementAPI.DAO.MeetingRepository;
@@ -18,6 +19,7 @@ import java.util.List;
  *   create progress on task, updating progress for task,
  *   and view all task progress by project id
  */
+@NoArgsConstructor
 @Service
 public class TeamMemberService {
     private TaskRepository taskRepository;
@@ -31,6 +33,18 @@ public class TeamMemberService {
                              TaskProgressRepository taskProgressRepository) {
         this.taskRepository = taskRepository;
         this.meetingRepository = meetingRepository;
+        this.taskProgressRepository = taskProgressRepository;
+    }
+
+    public void setTaskRepository(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+
+    public void setMeetingRepository(MeetingRepository meetingRepository) {
+        this.meetingRepository = meetingRepository;
+    }
+
+    public void setTaskProgressRepository(TaskProgressRepository taskProgressRepository) {
         this.taskProgressRepository = taskProgressRepository;
     }
 
