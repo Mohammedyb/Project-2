@@ -1,7 +1,16 @@
 package revature.ProjectManagementAPI.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "meeting_type")
 public class MeetingType {
@@ -12,20 +21,4 @@ public class MeetingType {
 
     @Column(name = "meeting_type", nullable = false, length = 20)
     private String meetingType;
-
-    public String getMeetingType() {
-        return meetingType;
-    }
-
-    public void setMeetingType(String meetingType) {
-        this.meetingType = meetingType;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }
