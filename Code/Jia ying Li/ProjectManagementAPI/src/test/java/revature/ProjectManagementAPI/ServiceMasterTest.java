@@ -58,7 +58,7 @@ public class ServiceMasterTest {
     private final Project project = new Project(1,"test", 1, "test",
             "test", "test");
 
-    private final AssignProject assignProject = new AssignProject(1,1,1,
+    private final AssignProject assignProject = new AssignProject(1,1,"test",
             1,"test");
 
     private final Meeting meeting = new Meeting(1,1,"test", "test", 1);
