@@ -23,7 +23,7 @@ public class AssignProject {
     private Integer projectsId;
 
     @Column(name = "project_manager")
-    private Integer projectManager;
+    private String projectManager;
 
     @Column(name = "assign_user_id")
     private Integer assignUserId;

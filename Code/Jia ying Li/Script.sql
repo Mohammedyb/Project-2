@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS TASKS(
 create table if not exists ASSIGN_PROJECT (
 	id serial primary key,
 	projects_id int4,
-	project_manager int4,
+	project_manager varchar,
 	assign_user_id int4,
 	assign_user_name varchar
 ); 
@@ -70,7 +70,7 @@ insert into USERS (email, password, name, project_id, role) values ('jiaying.li@
 insert into meeting_type (meeting_type) values ('Daily Standup'), ('Sprint Review'),('Sprint Planning');
 insert into meetings (project_id, meeting_date, meeting_time, meeting_type) values (1, '2022-02-25', '12:00:00', 1);
 insert into tasks (name, description, due_date, due_time, assigned_user, project_id) values ('Setup Database', 'Setup Postgresql database with GCP and implement schema.' ,'2022-02-26', '11:30:00', 2, 1);
-insert into assign_project (projects_id, project_manager, assign_user_id, assign_user_name) values (1, 1, 2, 'Christian Hall');
+insert into assign_project (projects_id, project_manager, assign_user_id, assign_user_name) values (1, 'August Duet', 2, 'Christian Hall');
 insert into task_progress (assign_task_id, projects_id, progress_status, task_comment) values (1, 1, 'DONE', 'completed and push to github');
 
 drop table tasks;
