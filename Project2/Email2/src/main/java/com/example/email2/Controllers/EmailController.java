@@ -12,18 +12,17 @@ import java.util.List;
 
 @RequestMapping("email")
 public class EmailController {
-    private final EmailService emailService;
-
+    private EmailService emailService;
 
     @Autowired
-    public EmailController(EmailService emailService){
+    public EmailController(EmailService emailService) {
         this.emailService = emailService;
     }
 
     @PostMapping
-    public ResponseEntity<?> sendEmail(@RequestBody String list){
+    public ResponseEntity<?> sendEmail(@RequestBody List<String> list){
 
-        emailService.sendEmail(new EmailDTO("project02sender@gmail.com", "mohammed.bubshait@revature.com", "emailtest", "Just Testing"));
+        emailService.sendEmail(new EmailDTO("project02sender@gmail.com", list.get(0),  list.get(1),  list.get(2)));
 
         return ResponseEntity.accepted().build();
     }
