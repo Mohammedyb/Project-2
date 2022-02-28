@@ -4,3 +4,25 @@ management:
     web:
       exposure:
         include: health, metrics, prometheus
+
+spring:
+  application:
+    name: ProjectManagementAPI
+  datasource:
+    username: postgres
+    password: p@$$w0rd123
+    url: jdbc:postgresql://35.232.193.129:5432/postgres
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      properties:
+        hibernate:
+          jdbc:
+            lob:
+              non_contextual_creation: true
+          format_sql: true
+      show-sql: true
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+api:
+  config:
+    api2URL: ${API2URL}
