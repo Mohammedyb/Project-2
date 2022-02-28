@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS TASKS(
 create table if not exists ASSIGN_PROJECT (
 	id serial primary key,
 	projects_id int4,
-	project_manager varchar,
+	project_manager varchar(40),
 	assign_user_id int4,
-	assign_user_name varchar
+	assign_user_name varchar(40)
 ); 
 
 create table if not exists TASK_PROGRESS (

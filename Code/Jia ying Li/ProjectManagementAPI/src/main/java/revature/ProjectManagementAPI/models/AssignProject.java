@@ -22,14 +22,13 @@ public class AssignProject {
     @Column(name = "projects_id")
     private Integer projectsId;
 
-    @Column(name = "project_manager")
+    @Column(name = "project_manager", length = 40)
     private String projectManager;
 
     @Column(name = "assign_user_id")
     private Integer assignUserId;
 
-    @Lob
-    @Column(name = "assign_user_name")
+    @Column(name = "assign_user_name", length = 40)
     private String assignUserName;
 
 }
