@@ -18,18 +18,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/login", "/oauth/**").permitAll()
+                .antMatchers("/", "/index.html", "/oauth/**").permitAll()
                 .antMatchers("/user/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/index.html")
                     .usernameParameter("email")
                     .permitAll()
                     .defaultSuccessUrl("/")
                 .and()
                 .oauth2Login()
-                    .loginPage("/login")
+                    .loginPage("/index.html")
                     .userInfoEndpoint().userService(oauthUserService)
                     .and().successHandler(oAuth2LoginSuccessHandler);
                 /*.and()

@@ -9,6 +9,6 @@ import revature.ProjectManagementAPI.models.User;
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<User, Integer> {
-    public User getUserByID(Integer id);
+    public User getUserById(Integer id);
     public User getUserByEmail(String email);
 }

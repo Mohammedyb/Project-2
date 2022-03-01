@@ -10,8 +10,8 @@ spring:
     name: ProjectManagementAPI
   datasource:
     username: postgres
-    password: p@$$w0rd123
-    url: jdbc:postgresql://35.232.193.129:5432/postgres
+    password: root
+    url: jdbc:postgresql://35.230.43.68:5432/postgres
     driver-class-name: org.postgresql.Driver
     jpa:
       properties:
