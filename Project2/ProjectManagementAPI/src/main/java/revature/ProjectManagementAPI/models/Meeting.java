@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Setter
 @Getter
@@ -22,13 +23,15 @@ public class Meeting {
     @Column(name = "project_id")
     private Integer projectId;
 
-    @Column(name = "meeting_date", length = 10)
-    private String meetingDate;
-
-    @Column(name = "meeting_time", length = 8)
-    private String meetingTime;
+    @Column(name = "timestamp")
+    private Timestamp timestamp;
 
     @Column(name = "meeting_type")
     private Integer meetingType;
 
+    @Column(name = "meeting_calendar_id")
+    private String meetingCalendarId;
+
+    @Column(name = "meeting_length")
+    private double meetingLength;
 }

@@ -23,11 +23,53 @@
 			<artifactId>google-api-services-calendar</artifactId>
 			<version>v3-rev411-1.25.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-calendar -->
+	<dependency>
+		<groupId>com.google.apis</groupId>
+		<artifactId>google-api-services-calendar</artifactId>
+		<version>v3-rev20211229-1.32.1</version>
+	</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>2.9.0</version>
+	</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client -->
+	<dependency>
+		<groupId>com.google.api-client</groupId>
+		<artifactId>google-api-client</artifactId>
+		<version>1.32.1</version>
+	</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.oauth-client/google-oauth-client -->
+	<dependency>
+		<groupId>com.google.oauth-client</groupId>
+		<artifactId>google-oauth-client</artifactId>
+		<version>1.32.1</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.oauth-client</groupId>
+		<artifactId>google-oauth-client-jetty</artifactId>
+		<version>1.22.0</version>
+	</dependency>
+
+
+	<dependency>
+		<groupId>com.google.api-client</groupId>
+		<artifactId>google-api-client-jackson2</artifactId>
+		<version>1.33.2</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.api.client</groupId>
+		<artifactId>google-api-client-extensions</artifactId>
+		<version>1.4.1-beta</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-rest</artifactId>
+	</dependency>
 
 		<dependency>
 			<groupId>org.springframework.session</groupId>

@@ -54,7 +54,7 @@ public class TeamMembersController {
      */
     @GetMapping(value = "/viewtask/{userid}")
     public ResponseEntity<List<Task>> getAllTaskById(@PathVariable(value = "userid") Integer userId) {
-        LOGGER.info("Team Member is viewing their task by their id.");
+        LOGGER.info("Team Member {} is viewing their task by their id.", userId);
         return new ResponseEntity<>(teamMemberService.getAllByUserId(userId), HttpStatus.OK);
     }
 

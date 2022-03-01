@@ -1,10 +1,13 @@
 package revature.ProjectManagementAPI.service;
 
+import com.google.api.services.calendar.CalendarScopes;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import revature.ProjectManagementAPI.DAO.*;
 import revature.ProjectManagementAPI.models.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,7 +18,7 @@ import java.util.List;
  *     create meeting, view all meetings, create new task, view all task
  *     and view all task progress
  */
-@Service
+@Service @Slf4j
 public class MasterService {
     private ProjectRepository projectRepository;
 
@@ -27,17 +30,22 @@ public class MasterService {
 
     private TaskProgressRepository taskProgressRepository;
 
+    private EmailService emailService;
+
+
+
     public MasterService() {
     }
 
     @Autowired
     public MasterService(ProjectRepository projectRepository, AssignRepository assignRepository, MeetingRepository meetingRepository,
-                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository) {
+                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository, EmailService emailService) {
         this.projectRepository = projectRepository;
         this.assignRepository = assignRepository;
         this.meetingRepository = meetingRepository;
         this.taskRepository = taskRepository;
         this.taskProgressRepository = taskProgressRepository;
+        this.emailService = emailService;
     }
 
     public void setProjectRepository(ProjectRepository projectRepository) {
@@ -62,11 +70,27 @@ public class MasterService {
 
     /**
      * Create new project
-     *
      * @param project project post the manager created
      * @return new project with project name, assigned manager, manager id, project description and deadline
      */
     public Project newProject(Project project) {
+
+        return projectRepository.save(project);
+    }
+
+    /**
+     * Creates a new project and additionally initializes the calendar for that project
+     * @param project project post the manager created
+     * @return new project with project name, assigned manager, manager id, project description and deadline
+     */
+    public Project newProjectWithGoogle(Project project) {
+        /*Create the projects calendar*/
+        try {
+            project.setMeetingCalendarId(emailService.createCalendar(project));
+        } catch (Exception e) {
+            log.error("ERROR while trying to create project calendar: " + e.getMessage());
+            return projectRepository.save(project);
+        }
         return projectRepository.save(project);
     }
 
@@ -96,6 +120,21 @@ public class MasterService {
      */
     public Meeting createMeeting(Meeting meeting) {
         return  meetingRepository.save(meeting);
+    }
+
+    /**
+     * Creates a new meeting, and additionally adds it to the relevant project calendar
+     * @param meeting meeting post the manager created
+     * @return new meeting post with project id, meeting date, meeting time and meeting type
+     */
+    public Meeting createMeetingWithGoogle(Meeting meeting) {
+        try {
+            emailService.createMeeting(meeting);
+        } catch (Exception e) {
+            log.error("ERROR trying to create new google meeting: " + e.getMessage());
+            return meetingRepository.save(meeting);
+        }
+        return meetingRepository.save(meeting);
     }
 
     /**

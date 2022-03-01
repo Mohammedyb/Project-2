@@ -43,6 +43,9 @@ CREATE TABLE IF NOT EXISTS TASKS(
 
 alter table PROJECTS add project_manager int4 REFERENCES USERS(id);
 --ALTER TABLE public.roles ALTER COLUMN "role" TYPE varchar(30) USING "role"::varchar;
+alter table PROJECTS add meeting_calendar_id varchar;
+alter table MEETINGS add meeting_calendar_id varchar; 
+ALTER TABLE MEETINGS ADD meeting_length double NOT NULL DEFAULT 1.0;
 
 
 insert into ROLES (role) values ('Project Manager'), ('Team Member');
