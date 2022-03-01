@@ -21,6 +21,7 @@ import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import revature.ProjectManagementAPI.DAO.ProjectRepository;
+import revature.ProjectManagementAPI.DAO.UserRepository;
 import revature.ProjectManagementAPI.models.Meeting;
 import revature.ProjectManagementAPI.models.Project;
 
@@ -44,11 +45,15 @@ public class EmailService {
     private static List<String> SCOPES;
     private static String CREDENTIALS_FILE_PATH;
 
+    @Autowired
     private ProjectRepository projectRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
-    public EmailService(ProjectRepository projectRepository) {
+    public EmailService(ProjectRepository projectRepository, MasterService masterService) {
         this.projectRepository = projectRepository;
+        this.userRepository = userRepository;
         APPLICATION_NAME = "ProjectManagementAPI";
         JSON_FACTORY = GsonFactory.getDefaultInstance();
         TOKENS_DIRECTORY_PATH = "tokens";
@@ -131,8 +136,10 @@ public class EmailService {
 
         /* ==== Setting the attendees ==== */
         //A method to grab all attendees to a meeting here
-        EventAttendee[] attendees = new EventAttendee[] { //this is a placeholder that I'm going to be able to replace once i have the above method ^
-                new EventAttendee().setEmail("project02sender@gmail.com")
+        String[] attendeeEmails;
+        EventAttendee[] attendees = new EventAttendee[] { //Automatically add only our email and the email of the project's manager - we'll have a method to add attendees afterwards
+                new EventAttendee().setEmail("project02sender@gmail.com"),
+                new EventAttendee().setEmail(userRepository.getUserByID(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail())
         };
         /* ==== Setting the reminders ==== */
         //Default is an email reminder 24 hours before and one hour before
@@ -160,7 +167,13 @@ public class EmailService {
 
         /* ==== execute! (throw it into the calendar service) ==== */
         createdEvent = service.events().insert(calID, createdEvent).execute();
+        service.events().get(calID, createdEvent.getId());
 
         return createdEvent.getHtmlLink();
+    }
+
+    //PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
+    public void inviteAttendee(String calID, List<String> newAttendees) {
+
     }
 }
