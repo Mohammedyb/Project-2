@@ -28,10 +28,12 @@ public class ScrumMasterController {
     @Value("${api.config.api2URL:http://localhost:8081/email}")
     String url;
 
+    @Autowired
     private final MasterService masterService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ScrumMasterController.class);
 
+    @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
