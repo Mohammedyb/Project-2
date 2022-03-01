@@ -1,6 +1,6 @@
 create table if not exists ROLES(
 	id serial primary key,
-	role varchar(20) not null unique
+	role varchar(30) not null unique
 );
 
 CREATE TABLE IF NOT EXISTS PROJECTS(
@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS USERS(
 	password varchar(40),
 	name varchar(40),
 	project_id int4 references PROJECTS(id),
-	role int4 references ROLES(id)
+	role int4 references ROLES(id),
+	auth_provider varchar(15)
 );
 
 create table if not exists MEETING_TYPE(
@@ -50,5 +51,17 @@ insert into USERS (email, password, name, project_id, role) values ('project02se
 insert into USERS (email, password, name, project_id, role) values ('christian.h@revature.net', 'P@$$w0rd123', 'Christian Hall', 1,2);
 insert into meeting_type (meeting_type) values ('Daily Standup'), ('Sprint Review'),('Sprint Planning');
 insert into MEETINGS (project_id, meeting_date, meeting_time, meeting_type) values (1, '2022-02-25', '12:00:00', 1);
-insert into TASKS (name, description, due_date, due_time, assigned_user, project_id) values ('Setup Database', 'Setup Postgresql database with GCP and implement schema.' ,'2022-02-26', '11:30:00', 6, 1);
+insert into TASKS (name, description, due_date, due_time, assigned_user, project_id) values ('Setup Database', 'Setup Postgresql database with GCP and implement schema.' ,'2022-02-26', '11:30:00', 2, 1);
+
+--ALTER TABLE public.users ADD auth_provider varchar(15) NULL;
+alter sequence ROLES_id_seq restart with 1;
+alter sequence MEETINGS_id_seq restart with 1;
+alter sequence PROJECTS_id_seq restart with 1;
+alter sequence USERS_id_seq restart with 1;
+alter sequence TASKS_id_seq restart with 1;
+alter sequence MEETING_TYPE_id_seq restart with 1;
+
+DELETE FROM public.projects
+WHERE id=2;
+
 

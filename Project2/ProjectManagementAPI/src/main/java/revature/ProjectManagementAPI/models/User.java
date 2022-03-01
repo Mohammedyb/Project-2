@@ -36,4 +36,8 @@ public class User {
     @JoinColumn(name = "role")
     private Role roles;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_provider")
+    private AuthenticationProvider authProvider;
+
 }
