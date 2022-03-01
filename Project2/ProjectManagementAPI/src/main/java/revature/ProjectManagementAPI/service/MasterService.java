@@ -27,17 +27,20 @@ public class MasterService {
 
     private TaskProgressRepository taskProgressRepository;
 
+    private UserRepository userRepository;
+
     public MasterService() {
     }
 
     @Autowired
     public MasterService(ProjectRepository projectRepository, AssignRepository assignRepository, MeetingRepository meetingRepository,
-                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository) {
+                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository, UserRepository userRepository) {
         this.projectRepository = projectRepository;
         this.assignRepository = assignRepository;
         this.meetingRepository = meetingRepository;
         this.taskRepository = taskRepository;
         this.taskProgressRepository = taskProgressRepository;
+        this.userRepository = userRepository;
     }
 
     public void setProjectRepository(ProjectRepository projectRepository) {
@@ -148,4 +151,9 @@ public class MasterService {
     public List<TaskProgress> getAllProgress() { return taskProgressRepository.findAll(); }
 
 
+    public void updateProjectManagerAfterOAuthSuccess(User user, String name, AuthenticationProvider google) {
+        user.setName(name);
+        user.setAuthProvider(google);
+        userRepository.save(user);
+    }
 }

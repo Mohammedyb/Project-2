@@ -97,5 +97,4 @@ public class TeamMembersController {
         teamMemberService.update(updateTaskProgress);
         return  ResponseEntity.status(HttpStatus.OK).body(updateTaskProgress);
     }
-
 }
