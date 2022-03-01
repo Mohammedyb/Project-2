@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 import revature.ProjectManagementAPI.DAO.MeetingRepository;
 import revature.ProjectManagementAPI.DAO.TaskProgressRepository;
 import revature.ProjectManagementAPI.DAO.TaskRepository;
-import revature.ProjectManagementAPI.models.Meeting;
-import revature.ProjectManagementAPI.models.Task;
-import revature.ProjectManagementAPI.models.TaskProgress;
+import revature.ProjectManagementAPI.DAO.UserRepository;
+import revature.ProjectManagementAPI.models.*;
 
 import java.util.List;
 
@@ -28,12 +27,15 @@ public class TeamMemberService {
 
     private TaskProgressRepository taskProgressRepository;
 
+    private UserRepository userRepository;
+
     @Autowired
     public TeamMemberService(TaskRepository taskRepository, MeetingRepository meetingRepository,
-                             TaskProgressRepository taskProgressRepository) {
+                             TaskProgressRepository taskProgressRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
         this.meetingRepository = meetingRepository;
         this.taskProgressRepository = taskProgressRepository;
+        this.userRepository = userRepository;
     }
 
     public void setTaskRepository(TaskRepository taskRepository) {
@@ -105,4 +107,21 @@ public class TeamMemberService {
         return taskProgress;
     }
 
+    public void createNewTeamMemberAfterOAuthSuccess(String email, String name, AuthenticationProvider provider) {
+        User user = new User();
+        user.setEmail(email);
+        user.setName(name);
+        user.setAuthProvider(provider);
+        userRepository.save(user);
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public void updateProjectManagerAfterOAuthSuccess(User user, String name, AuthenticationProvider google) {
+        user.setName(name);
+        user.setAuthProvider(google);
+        userRepository.save(user);
+    }
 }
