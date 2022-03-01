@@ -129,7 +129,7 @@ public class MasterService {
      */
     public Meeting createMeetingWithGoogle(Meeting meeting) {
         try {
-            emailService.createMeeting(meeting);
+            meeting.setMeetingLink(emailService.createMeeting(meeting));
         } catch (Exception e) {
             log.error("ERROR trying to create new google meeting: " + e.getMessage());
             return meetingRepository.save(meeting);

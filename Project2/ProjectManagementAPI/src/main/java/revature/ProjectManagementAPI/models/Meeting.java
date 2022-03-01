@@ -34,4 +34,7 @@ public class Meeting {
 
     @Column(name = "meeting_length")
     private double meetingLength;
+
+    @Column(name = "meeting_link")
+    private String meetingLink;
 }
