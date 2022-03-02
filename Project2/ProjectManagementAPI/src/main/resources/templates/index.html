@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: sec = "http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -149,7 +149,7 @@
                     <input type="submit" value="Log In" class="loginBtn btn">
                 </div>
                 <div>
-                    <h4><a th:href="@{/oauth2/authorization/google}"> Login with Google</a></h4>
+                    <a th:href="@{/oauth2/authorization/google}">Login with Google</a>
                 </div>
                 <p class="d-inline-flex mr-1 mt-4">Don't have an account?</p>
                 <a class="link" href="register.html">Register</a>
