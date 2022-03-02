@@ -175,14 +175,31 @@ public class EmailService {
     }
 
     //PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
-    public void inviteAttendee(String calID, Event event, List<String> newAttendees) throws GeneralSecurityException, IOException {
+
+    /**
+     * Invites any number of attendees to a given event
+     * @param calID the calendar id for the calendar on which the event takes place
+     * @param event the full event object that invites are being sent to
+     * @param newAttendees a string list of the emails of new attendees
+     * @return the newly updated event, with more invitees
+     * @throws GeneralSecurityException
+     * @throws IOException
+     */
+    public Event inviteAttendee(String calID, Event event, List<String> newAttendees) throws GeneralSecurityException, IOException {
         log.info("Adding an attendant to the meeting {}", event.getSummary());
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
         Events instances = service.events().instances(calID, event.getId()).execute();
-        java.util.Optional<Event> wrappedEvent = new Optional(event);
-        Event instance = instances.getItems().get(instances.getItems().stream().findFirst(wrappedEvent));
+        Event instance = instances.getItems().get(instances.getItems().indexOf(event));
+        EventAttendee[] attendees = instance.getAttendees().toArray(new EventAttendee[0]);
+        List<EventAttendee> attendeeList = Arrays.asList(attendees);
+        for(String person : newAttendees )
+        {
+            attendeeList.add(new EventAttendee().setEmail(person));
+        }
+        instance.setAttendees(attendeeList);
+        return service.events().update(calID, instance.getId(), instance).execute();
     }
 }
