@@ -13,10 +13,8 @@ import com.google.api.client.util.DateTime;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.EventAttendee;
-import com.google.api.services.calendar.model.EventDateTime;
-import com.google.api.services.calendar.model.EventReminder;
+import com.google.api.services.calendar.model.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.protocol.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +31,11 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-@Service
+import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.Optional;
+
+@Service @Slf4j
 public class EmailService {
     /** Application name. */
     private static String APPLICATION_NAME;
@@ -115,6 +116,7 @@ public class EmailService {
      */
     public String createMeeting(Meeting meeting) throws GeneralSecurityException, IOException {
         Project project = projectRepository.getById(meeting.getProjectId());
+        log.info("Creating a meeting for the project {}", project.getName());
 
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
@@ -132,14 +134,14 @@ public class EmailService {
 
         /* ==== Setting the recurrence ==== */
         // the default below is to be a weekly event - work with Kramer to figure out how they'll input their recurrence rules
-        String[] recurrence = new String[] {"RRULE:FREQ=WEEKLY;UNTIL=20251231T115959Z"};
+        String[] recurrence = new String[] {"RRULE:FREQ=WEEKLY;UNTIL=20501231T115959Z"};
 
         /* ==== Setting the attendees ==== */
         //A method to grab all attendees to a meeting here
         String[] attendeeEmails;
         EventAttendee[] attendees = new EventAttendee[] { //Automatically add only our email and the email of the project's manager - we'll have a method to add attendees afterwards
                 new EventAttendee().setEmail("project02sender@gmail.com"),
-                new EventAttendee().setEmail(userRepository.getUserByID(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail())
+                new EventAttendee().setEmail(userRepository.getUserById(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail())
         };
         /* ==== Setting the reminders ==== */
         //Default is an email reminder 24 hours before and one hour before
@@ -173,7 +175,14 @@ public class EmailService {
     }
 
     //PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
-    public void inviteAttendee(String calID, List<String> newAttendees) {
-
+    public void inviteAttendee(String calID, Event event, List<String> newAttendees) throws GeneralSecurityException, IOException {
+        log.info("Adding an attendant to the meeting {}", event.getSummary());
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        Events instances = service.events().instances(calID, event.getId()).execute();
+        java.util.Optional<Event> wrappedEvent = new Optional(event);
+        Event instance = instances.getItems().get(instances.getItems().stream().findFirst(wrappedEvent));
     }
 }
