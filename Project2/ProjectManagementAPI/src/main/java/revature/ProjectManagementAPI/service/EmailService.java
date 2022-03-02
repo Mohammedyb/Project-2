@@ -175,7 +175,6 @@ public class EmailService {
     }
 
     //PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
-
     /**
      * Invites any number of attendees to a given event
      * @param calID the calendar id for the calendar on which the event takes place

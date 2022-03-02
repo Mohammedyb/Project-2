@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS MEETINGS(
 	project_id int4,
 	meeting_date varchar(10),
 	meeting_time varchar(8),
-	meeting_type int4 
+	meeting_type int4
 );
 
 CREATE TABLE IF NOT EXISTS TASKS(
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS TASKS(
 	due_date varchar(10),
 	due_time varchar(8),
 	assigned_user int4,
-	project_id int4 
+	project_id int4
 );
 
 create table if not exists ASSIGN_PROJECT (
@@ -51,7 +51,7 @@ create table if not exists ASSIGN_PROJECT (
 	project_manager varchar(40),
 	assign_user_id int4,
 	assign_user_name varchar(40)
-); 
+);
 
 create table if not exists TASK_PROGRESS (
 	id serial primary key,
@@ -62,6 +62,15 @@ create table if not exists TASK_PROGRESS (
 );
 
 --ALTER TABLE public.roles ALTER COLUMN "role" TYPE varchar(30) USING "role"::varchar;
+-- ALTERS TO ALLOW CALENDAR FUNCTION
+ALTER TABLE MEETINGS DROP COLUMN meeting_date;
+ALTER TABLE MEETINGS DROP COLUMN meeting_time;
+ALTER TABLE MEETINGS ADD COLUMN meeting_calendar_id varchar NOT NULL default "NONE";
+ALTER TABLE MEETINGS ADD COLUMN meeting_length double NOT NULL default 1.5;
+ALTER TABLE MEETINGS ADD COLUMN meeting_link varchar NOT NULL DEFAULT "NONE";
+ALTER TABLE MEETINGS ADD COLUMN timestamp timestamp;
+
+
 
 insert into ROLES (role) values ('Project Manager'), ('Team Member');
 insert into PROJECTS (name, project_manager_id ,project_manager, project_description,deadline) values ('Equifax Mobile Credit Report App', 1, 'August Duet', 'Creating a mobile credit report for Equifax', '2022-03-04');
@@ -91,6 +100,3 @@ drop table projects cascade;
 drop table roles cascade;
 drop table assign_project;
 drop table task_progress;
-
-
-

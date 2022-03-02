@@ -23,9 +23,6 @@ public class Meeting {
     @Column(name = "project_id")
     private Integer projectId;
 
-    @Column(name = "timestamp")
-    private Timestamp timestamp;
-
     @Column(name = "meeting_type")
     private Integer meetingType;
 
@@ -37,4 +34,7 @@ public class Meeting {
 
     @Column(name = "meeting_link")
     private String meetingLink;
+
+    @Column(name = "timestamp")
+    private Timestamp timestamp;
 }
