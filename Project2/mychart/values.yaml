@@ -1,0 +1,21 @@
+myValue: "Hello, Kubenetes"
+
+complexConfig:
+  include: false
+  data: "awesome-data"
+
+favorites:
+  food: chilli
+  drink: coffee
+  movie: The Fifth Element
+
+library:
+  - Star Wars, A New Hope
+  - Star Wars, The Empire Strikes Back
+  - Star Wars, Return of the Jedi
+  - Dune
+  - The Way of Kings
+
+appName: my-app
+image: hello-world
+containerName: hello-world-container

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ProjectManagementAPI
+  labels:
+    app: pm-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project-management-api
+  template:
+    metadata:
+      labels:
+        app: project-management-api
+    spec:
+      containers:
+        - image: projectmanagementapi
+          name: project-management-api
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_URL
+              value: jdbc:postgresql://postgres-service:5432/postgres
+            - name: DB_USERNAME
+              value: postgres
+            - name: DB_PASSWORD
+              value: password123
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod

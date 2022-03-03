@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    # essentially capture the second group of the path
+    # /$1     /$2
+    #/widgets/resources
+spec:
+  rules:
+    - host: widgets.info
+      http:
+        paths:
+          - path: /widgets(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 8080

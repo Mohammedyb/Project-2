@@ -1,0 +1,13 @@
+# this is for demo using minikube which only supports hostPath PV's out of the box
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ex-pv-01
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /data/ex-pv-01/

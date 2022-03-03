@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Release.Name}}-configmap
+data:
+  myvalue: {{.Values.myValue | quote}}
+  {{- if .Values.complexConfig.include}}
+  optionalData: {{.Values.complexConfig.data}}
+  {{- end}}
+  # food: {{.Values.favorites.food | quote}}
+  # drink: {{.Values.favorites.drink | default "coffee" | quote}}
+  {{- with .Values.favorites}}
+  drink: {{ .drink | default "tea" | quote}}
+  food: {{ .food | default "pizza" | quote}}
+  movie: {{ .movie | default "The Goonies" | quote}}
+  {{- end}}
+  books: |-
+  {{- range .Values.library}}
+    - {{. | title | quote}}
+  {{- end}}

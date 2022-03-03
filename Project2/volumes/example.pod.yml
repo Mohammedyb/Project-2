@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+spec:
+  volumes:
+    - name: example-volume
+      persistentVolumeClaim:
+        claimName: example-pvc-01 # this was already created
+  containers:
+    - image: nginx
+      name: example-task-nginx
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: example-volume
+          mountPath: /usr/share/nginx/html
