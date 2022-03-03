@@ -12,6 +12,7 @@ import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.MasterService;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -60,10 +61,17 @@ public class ServiceMasterTest {
     private final Project project = new Project(1,"test", 1, "test",
             "test", "test");
 
+<<<<<<< HEAD
     private final AssignProject assignProject = new AssignProject(1,1,"1",
             1,"test");
 
     private final Meeting meeting = new Meeting(1, 1, 1, "1", 1.5, "NONE", new Timestamp(System.nanoTime()));
+=======
+    private final AssignProject assignProject = new AssignProject(1,1,"PM",
+            1,"test");
+
+    private final Meeting meeting = new Meeting(1, 1, 1, "NONE", 1.5, "NONE", new Timestamp(System.currentTimeMillis()), Arrays.asList("one", "two")); //new Meeting(1, 1, "MarathonProject", 1, "NONE", 1.5, "", new String[]{""}, new Timestamp(System.nanoTime()));
+>>>>>>> Connor_Munro
 
     private final Task task = new Task(1,"test","test","test","test",
             1,1);

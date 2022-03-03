@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Setter
 @Getter
@@ -37,4 +38,7 @@ public class Meeting {
 
     @Column(name = "timestamp")
     private Timestamp timestamp;
+
+    @Column(name = "attendees")
+    private List<String> attendees;
 }

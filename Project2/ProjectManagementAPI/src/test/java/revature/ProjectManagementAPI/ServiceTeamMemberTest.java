@@ -11,6 +11,10 @@ import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.TeamMemberService;
 
 import java.sql.Timestamp;
+<<<<<<< HEAD
+=======
+import java.util.Arrays;
+>>>>>>> Connor_Munro
 import java.util.Collections;
 import java.util.List;
 
@@ -49,7 +53,11 @@ public class ServiceTeamMemberTest {
     private final TaskProgress taskProgress = new TaskProgress(1,1, 1, "test",
             "test");
 
+<<<<<<< HEAD
     private final Meeting meeting = new Meeting(1, 1, 1, "1", 1.5, "NONE", new Timestamp(System.nanoTime()));
+=======
+    private final Meeting meeting = new Meeting(1, 1, 1, "NONE", 1.5, "NONE", new Timestamp(System.currentTimeMillis()), Arrays.asList("one", "two"));
+>>>>>>> Connor_Munro
 
     private final Task task = new Task(1,"test","test","test","test",
             1,1);

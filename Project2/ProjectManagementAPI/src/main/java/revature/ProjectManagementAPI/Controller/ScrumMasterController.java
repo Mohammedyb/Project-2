@@ -53,11 +53,11 @@ public class ScrumMasterController {
     public Project createNewProject(@RequestBody Project project) {
         return masterService.newProject(project);
     }
-
+    /**
     @PostMapping(value = "/new/google", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Project createNewProjectWithEvent(@RequestBody Project project) {
         return masterService.newProjectWithGoogle(project);
-    }
+    } */
 
     /**
      * Create new meeting
@@ -75,11 +75,11 @@ public class ScrumMasterController {
      * Creates a new meeting, and additionally adds the relevant event to the project's calendar
      * @param meeting meeting post the manager created
      * @return new meeting post with project id, meeting date, meeting time and meeting type
-     */
+
     @PostMapping(value = "/newmeeting/google", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Meeting createNewMeetingWithGoogle(@RequestBody Meeting meeting) {return masterService.createMeetingWithGoogle(meeting);}
-
+    */
     /**
      * Create new task
      *
