@@ -10,6 +10,8 @@ import revature.ProjectManagementAPI.DAO.*;
 import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.TeamMemberService;
 
+import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,7 +50,7 @@ public class ServiceTeamMemberTest {
     private final TaskProgress taskProgress = new TaskProgress(1,1, 1, "test",
             "test");
 
-    private final Meeting meeting = new Meeting(1,1,"test", "test", 1);
+    private final Meeting meeting = new Meeting(1, 1, 1, "NONE", 1.5, "NONE", new Timestamp(System.currentTimeMillis()), Arrays.asList("one", "two"));
 
     private final Task task = new Task(1,"test","test","test","test",
             1,1);
