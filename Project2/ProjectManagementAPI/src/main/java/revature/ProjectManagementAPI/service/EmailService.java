@@ -136,13 +136,13 @@ public class EmailService {
         String[] recurrence = new String[] {"RRULE:FREQ=WEEKLY;UNTIL=20501231T115959Z"};
 
         /* ==== Setting the attendees ==== */
-        String[] attendeeEmails = meeting.getAttendees().toArray(new String[0]);
-        EventAttendee[] attendees = new EventAttendee[attendeeEmails.length + 2];
-        attendees[0] = new EventAttendee().setEmail("project02sender@gmail.com");
-        attendees[1] = new EventAttendee().setEmail(userRepository.getUserById(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail());
-        for(int i = 0; i < attendeeEmails.length; i++ ) {
-            attendees[i+2] = new EventAttendee().setEmail(attendeeEmails[i]);
-        }
+//        String[] attendeeEmails = meeting.getAttendees().toArray(new String[0]);
+//        EventAttendee[] attendees = new EventAttendee[attendeeEmails.length + 2];
+//        attendees[0] = new EventAttendee().setEmail("project02sender@gmail.com");
+//        attendees[1] = new EventAttendee().setEmail(userRepository.getUserById(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail());
+//        for(int i = 0; i < attendeeEmails.length; i++ ) {
+//            attendees[i+2] = new EventAttendee().setEmail(attendeeEmails[i]);
+//        }
         /* ==== Setting the reminders ==== */
         //Default is an email reminder 24 hours before and one hour before
         //Do we even want to change that?
@@ -164,7 +164,7 @@ public class EmailService {
                 .setStart(start)
                 .setEnd(end)
                 .setRecurrence(Arrays.asList(recurrence))
-                .setAttendees(Arrays.asList(attendees))
+//                .setAttendees(Arrays.asList(attendees))
                 .setReminders(reminders);
 
         /* ==== execute! (throw it into the calendar service) ==== */

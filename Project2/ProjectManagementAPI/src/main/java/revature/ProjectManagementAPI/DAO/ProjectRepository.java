@@ -10,8 +10,4 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
-    public Project getProjectById(Integer id);
-    public Project getProjectByName(String name);
-    public List<Project> getAllProjectsByProjectManagerId(Integer projectManagerId);
-    public List<Project> findAll();
 }

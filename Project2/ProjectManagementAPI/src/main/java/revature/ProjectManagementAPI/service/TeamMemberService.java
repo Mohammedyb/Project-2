@@ -3,10 +3,7 @@ package revature.ProjectManagementAPI.service;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import revature.ProjectManagementAPI.DAO.MeetingRepository;
-import revature.ProjectManagementAPI.DAO.TaskProgressRepository;
-import revature.ProjectManagementAPI.DAO.TaskRepository;
-import revature.ProjectManagementAPI.DAO.UserRepository;
+import revature.ProjectManagementAPI.DAO.*;
 import revature.ProjectManagementAPI.models.*;
 
 import java.util.List;
@@ -29,13 +26,17 @@ public class TeamMemberService {
 
     private UserRepository userRepository;
 
+    private AssignRepository assignRepository;
+
     @Autowired
     public TeamMemberService(TaskRepository taskRepository, MeetingRepository meetingRepository,
-                             TaskProgressRepository taskProgressRepository, UserRepository userRepository) {
+                             TaskProgressRepository taskProgressRepository, UserRepository userRepository,
+                             AssignRepository assignRepository) {
         this.taskRepository = taskRepository;
         this.meetingRepository = meetingRepository;
         this.taskProgressRepository = taskProgressRepository;
         this.userRepository = userRepository;
+        this.assignRepository = assignRepository;
     }
 
     public void setTaskRepository(TaskRepository taskRepository) {
@@ -49,6 +50,16 @@ public class TeamMemberService {
     public void setTaskProgressRepository(TaskProgressRepository taskProgressRepository) {
         this.taskProgressRepository = taskProgressRepository;
     }
+
+    public void setAssignRepository(AssignRepository assignRepository) {
+        this.assignRepository = assignRepository;
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<AssignProject> getAssignByUserId(Integer userId) { return assignRepository.getAllByAssignUserId(userId); }
 
     /**
      * View meeting post by project Id
@@ -115,9 +126,6 @@ public class TeamMemberService {
         userRepository.save(user);
     }
 
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public void updateProjectManagerAfterOAuthSuccess(User user, String name, AuthenticationProvider google) {
         user.setName(name);

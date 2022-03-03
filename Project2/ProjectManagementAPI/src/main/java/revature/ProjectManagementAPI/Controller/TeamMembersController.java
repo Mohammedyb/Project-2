@@ -7,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import revature.ProjectManagementAPI.models.Meeting;
-import revature.ProjectManagementAPI.models.Task;
-import revature.ProjectManagementAPI.models.TaskProgress;
+import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.TeamMemberService;
 
 import java.util.List;
@@ -25,13 +23,26 @@ import java.util.List;
 @RequestMapping("team")
 public class TeamMembersController {
 
-    private TeamMemberService teamMemberService;
+    private final TeamMemberService teamMemberService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TeamMembersController.class);
 
     @Autowired
     public TeamMembersController(TeamMemberService teamMemberService) {
         this.teamMemberService = teamMemberService;
+    }
+
+    /**
+     * View meeting post by project Id
+     *
+     * @param userId the user id that each member have uniquely
+     * @return assigned project post
+     */
+    @GetMapping(value = "/viewassign/{userid}")
+    public ResponseEntity<List<AssignProject>> getAllAssignById(@PathVariable(value = "userid") Integer userId) {
+        LOGGER.info("Team Member is viewing assigned project by user id.");
+        List<AssignProject> project = teamMemberService.getAssignByUserId(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(project);
     }
 
     /**
@@ -92,7 +103,7 @@ public class TeamMembersController {
      */
     @PutMapping(value = "/updateprogress", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateProgress(@RequestBody TaskProgress updateTaskProgress) {
+    public ResponseEntity<?> updateProgress(@RequestBody TaskProgress updateTaskProgress){
         LOGGER.info("Team Member is updating the task progress.");
         teamMemberService.update(updateTaskProgress);
         return  ResponseEntity.status(HttpStatus.OK).body(updateTaskProgress);

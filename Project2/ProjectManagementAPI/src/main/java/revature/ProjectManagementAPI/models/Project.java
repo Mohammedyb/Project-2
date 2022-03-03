@@ -15,7 +15,8 @@ import javax.persistence.*;
 @Table(name = "projects")
 public class Project {
 
-    public Project(Integer id, String name, Integer projectManagerId, String projectManager, String projectDescription, String deadline) {
+    public Project(Integer id, String name, Integer projectManagerId, String projectManager, String projectDescription,
+                   String deadline) {
         this.id = id;
         this.name = name;
         this.projectManagerId = projectManagerId;

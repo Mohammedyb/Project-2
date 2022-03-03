@@ -65,7 +65,8 @@ public class ServiceMasterTest {
     private final AssignProject assignProject = new AssignProject(1,1,"PM",
             1,"test");
 
-    private final Meeting meeting = new Meeting(1, 1, 1, "NONE", 1.5, "NONE", new Timestamp(System.currentTimeMillis())/*, Arrays.asList("one", "two")*/);
+    private final Meeting meeting = new Meeting(1, 1, 1, "NONE",
+            1.5, "NONE", new Timestamp(System.currentTimeMillis())/*, Arrays.asList("one", "two")*/);
 
     private final Task task = new Task(1,"test","test","test","test",
             1,1);

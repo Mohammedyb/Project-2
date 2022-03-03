@@ -11,7 +11,6 @@ import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.TeamMemberService;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ServiceTeamMemberTest {
+class ServiceTeamMemberTest {
 
     @Mock
     private TaskRepository taskRepository;
@@ -33,6 +32,9 @@ public class ServiceTeamMemberTest {
     @Mock
     private TaskProgressRepository taskProgressRepository;
 
+    @Mock
+    private AssignRepository assignRepository;
+
     @InjectMocks
     private TeamMemberService teamMemberService;
 
@@ -41,20 +43,26 @@ public class ServiceTeamMemberTest {
         meetingRepository = mock(MeetingRepository.class);
         taskRepository = mock(TaskRepository.class);
         taskProgressRepository = mock(TaskProgressRepository.class);
+        assignRepository = mock(AssignRepository.class);
         teamMemberService = new TeamMemberService();
         teamMemberService.setMeetingRepository(meetingRepository);
         teamMemberService.setTaskRepository(taskRepository);
         teamMemberService.setTaskProgressRepository(taskProgressRepository);
+        teamMemberService.setAssignRepository(assignRepository);
     }
 
     private final TaskProgress taskProgress = new TaskProgress(1,1, 1, "test",
             "test");
 
 
-    private final Meeting meeting = new Meeting(1, 1, 1, "NONE", 1.5, "NONE", new Timestamp(System.currentTimeMillis())/*, Arrays.asList("one", "two")*/);
+    private final Meeting meeting = new Meeting(1, 1, 1, "NONE",
+            1.5, "NONE", new Timestamp(System.currentTimeMillis()));
 
     private final Task task = new Task(1,"test","test","test","test",
             1,1);
+
+    private final AssignProject assignProject = new AssignProject(1,1,"test",1,
+            "string");
 
     @Test
     void shouldReturnProjectById() {
@@ -82,5 +90,12 @@ public class ServiceTeamMemberTest {
         given(taskProgressRepository.save(taskProgress)).willReturn(taskProgress);
         TaskProgress savedTaskProgress = teamMemberService.save(taskProgress);
         assertThat(savedTaskProgress).isNotNull();
+    }
+
+    @Test
+    void shouldReturnAssignById() {
+        given(assignRepository.getAllByAssignUserId(assignProject.getAssignUserId())).willReturn(Collections.emptyList());
+        List<AssignProject> assignProjects = teamMemberService.getAssignByUserId(assignProject.getAssignUserId());
+        assertThat(assignProjects).isNotNull();
     }
 }
