@@ -121,6 +121,7 @@ public class MasterService {
      * @return new meeting post with project id, meeting date, meeting time and meeting type
      */
     public Meeting createMeeting(Meeting meeting) {
+        log.info("Creating meeting without google calendar event: {}", meeting);
         return  meetingRepository.save(meeting);
     }
 
@@ -130,10 +131,11 @@ public class MasterService {
      * @return new meeting post with project id, meeting date, meeting time and meeting type
      */
     public Meeting createMeetingWithGoogle(Meeting meeting) {
+        log.info("Creating meeting with google calendar meeting: {}", meeting);
         try {
             meeting.setMeetingLink(emailService.createMeeting(meeting));
         } catch (Exception e) {
-            log.error("ERROR trying to create new google meeting: " + e.getMessage());
+            log.error("ERROR trying to create new google meeting - proceeding without google event: " + e.getMessage());
             meeting.setMeetingLink("NONE");
             return meetingRepository.save(meeting);
         }

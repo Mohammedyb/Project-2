@@ -136,12 +136,13 @@ public class EmailService {
         String[] recurrence = new String[] {"RRULE:FREQ=WEEKLY;UNTIL=20501231T115959Z"};
 
         /* ==== Setting the attendees ==== */
-        //A method to grab all attendees to a meeting here
-        String[] attendeeEmails;
-        EventAttendee[] attendees = new EventAttendee[] { //Automatically add only our email and the email of the project's manager - we'll have a method to add attendees afterwards
-                new EventAttendee().setEmail("project02sender@gmail.com"),
-                new EventAttendee().setEmail(userRepository.getUserById(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail())
-        };
+        String[] attendeeEmails = meeting.getAttendees().toArray(new String[0]);
+        EventAttendee[] attendees = new EventAttendee[attendeeEmails.length + 2];
+        attendees[0] = new EventAttendee().setEmail("project02sender@gmail.com");
+        attendees[1] = new EventAttendee().setEmail(userRepository.getUserById(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail());
+        for(int i = 0; i < attendeeEmails.length; i++ ) {
+            attendees[i+2] = new EventAttendee().setEmail(attendeeEmails[i]);
+        }
         /* ==== Setting the reminders ==== */
         //Default is an email reminder 24 hours before and one hour before
         //Do we even want to change that?

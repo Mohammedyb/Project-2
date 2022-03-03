@@ -70,6 +70,7 @@ ALTER TABLE MEETINGS ADD COLUMN meeting_length double NOT NULL default 1.5;
 ALTER TABLE MEETINGS ADD COLUMN meeting_link varchar NOT NULL DEFAULT 'NONE';
 ALTER TABLE MEETINGS ADD COLUMN timestamp timestamp;
 ALTER TABLE PROJECT ADD COLUMN meeting_calendar_id varchar NOT NULL DEFAULT 'NONE';
+ALTER TABLE MEETINGS ADD COLUMN attendees varchar[];
 
 
 

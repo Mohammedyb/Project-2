@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: marathon-main
+spec:
+  containers:
+    - name: marathon
+      image: #Once we have a working image, put it here#
+      ports:
+        - containerPort: 8080
+    - name: emailApi
+      image: #emailApiImage#
+      ports:
+        - containerPort: 8081
