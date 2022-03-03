@@ -60,10 +60,10 @@ public class ServiceMasterTest {
     private final Project project = new Project(1,"test", 1, "test",
             "test", "test");
 
-    private final AssignProject assignProject = new AssignProject(1,1,1,
+    private final AssignProject assignProject = new AssignProject(1,1,"1",
             1,"test");
 
-    private final Meeting meeting = new Meeting(1, 1, new Timestamp(System.nanoTime()), 1, "NONE", 1.5, "");
+    private final Meeting meeting = new Meeting(1, 1, 1, "1", 1.5, "NONE", new Timestamp(System.nanoTime()));
 
     private final Task task = new Task(1,"test","test","test","test",
             1,1);
