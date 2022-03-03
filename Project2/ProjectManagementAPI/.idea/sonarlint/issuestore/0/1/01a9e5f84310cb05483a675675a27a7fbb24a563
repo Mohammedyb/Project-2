@@ -1,0 +1,38 @@
+
+v
+java:S3008&"[Rename this field "APPLICATION_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ôÔØúÿÿÿÿ
+r
+java:S3008("WRename this field "JSON_FACTORY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù©Õ´úÿÿÿÿ
+{
+java:S3008*"`Rename this field "TOKENS_DIRECTORY_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã°²îÿÿÿÿÿ
+g
+java:S3008+"QRename this field "SCOPES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì½º
+u
+java:S3008,"`Rename this field "CREDENTIALS_FILE_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åÆÜ
+H
+java:S30107"-Remove this assignment of "APPLICATION_NAME".(ÔÉ˜§úÿÿÿÿ
+D
+java:S30108")Remove this assignment of "JSON_FACTORY".(ˆÁöŠúÿÿÿÿ
+M
+java:S30109"2Remove this assignment of "TOKENS_DIRECTORY_PATH".(„äè¸üÿÿÿÿ
+M
+java:S3010:"2Remove this assignment of "CREDENTIALS_FILE_PATH".(ì†Ã…ùÿÿÿÿ
+9
+java:S3010;"#Remove this assignment of "SCOPES".(ëåŠ“
+\
+java:S1075:"ARefactor your code to get this URI from a customizable parameter.(ì†Ã…ùÿÿÿÿ
+5
+java:S2153"Remove the boxing to "Double".(™‰—×
+O
+java:S1481Š"3Remove this unused "attendeeEmails" local variable.(Õ”ÇÀûÿÿÿÿ
+J
+java:S16566"/Remove or correct this useless self-assignment.(È˜Ñúÿÿÿÿ
+k	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğï¶ıÿÿÿÿ
+f	java:S117\"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š‘ªæ
+f	java:S117v"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š‘ªæ
+g	java:S117º"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š‘ªæ
+x
+java:S1488S"bImmediately return this expression instead of assigning it to the temporary variable "credential".(½£åì
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(â¾Ä
+‡
+java:S41656"lRemove this useless assignment; "userRepository" already holds the assigned value along all execution paths.(È˜Ñúÿÿÿÿ
