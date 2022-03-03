@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -15,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "meetings")
+///@TypeDef(name = "list-array", typeClass = ListArrayType.class )
 public class Meeting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +42,7 @@ public class Meeting {
     @Column(name = "timestamp")
     private Timestamp timestamp;
 
-    @Column(name = "attendees")
-    private List<String> attendees;
+    /*@Type(type = "list-array")
+    @Column(name = "attendees", columnDefinition = "text[]")
+    private List<String> attendees; */
 }
