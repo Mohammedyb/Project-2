@@ -6,7 +6,7 @@ pipeline {
 			steps{
 				echo 'Building...'
 				sh 'node --version'
-				docker build -t main-api ./ProjectManagementAPI/
+				docker build -t main-api ./Project2/ProjectManagementAPI/
 				//rebuild relevant dockerized apps - Marathon, emailAPI
 
 			}
