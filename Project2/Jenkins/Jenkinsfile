@@ -6,7 +6,7 @@ pipeline {
 			steps{
 				echo 'Building...'
 				sh 'node --version'
-				docker build -t main-api ./Project2/ProjectManagementAPI/
+				sh 'minikube start'
 				//rebuild relevant dockerized apps - Marathon, emailAPI
 
 			}
@@ -15,6 +15,7 @@ pipeline {
 		stage('Test') {
 			steps {
 				echo 'Testing...'
+				sh 'minikube status'
 				//Run through JUnit tests
 			}
 		}
