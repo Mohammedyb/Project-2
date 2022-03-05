@@ -1,5 +1,11 @@
 pipeline {
-  stages {
+   environment {
+       registry = 'mohammedyb/project2'
+       dockerHubCreds = 'docker_hub'
+       dockerImage = ''
+
+    }
+  agent any
     stage('Test') {
       when {
         branch 'feature/*'
@@ -18,3 +24,31 @@ pipeline {
             withMaven {
                 sh 'mvn clean package -DskipTests'
             }
+        }
+    }
+       stage('Docker Build') {
+            when {
+                branch 'main'
+            }
+            steps {
+                script {
+                    echo "$registry:$currentBuild.number"
+                    dockerImage = docker.build "$registry"
+                }
+            }
+        }
+        stage('Docker Deliver') {
+                when {
+                    branch 'main'
+                }
+                steps {
+                    script {
+                        docker.withRegistry('', dockerHubCreds) {
+                            dockerImage.push("$currentBuild.number")
+                            dockerImage.push("latest")
+                        }
+                    }
+                }
+            }
+  }
+}
