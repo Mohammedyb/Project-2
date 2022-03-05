@@ -47,7 +47,7 @@ resource "google_compute_instance" "instance" {
   metadata_startup_script = file("metadata_script.sh")
 
   metadata = {
-    "ssh-keys" = "alsheikhhusam:${file("~/.ssh/id_ed25519.pub")}"
+    "ssh-keys" = "mohammed.bubshait:${file("~/.ssh/id_ed25519.pub")}"
   }
 }
 
