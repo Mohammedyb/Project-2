@@ -1,0 +1,20 @@
+pipeline {
+  stages {
+    stage('Test') {
+      when {
+        branch 'feature/*'
+      }
+      steps {
+        withMaven {
+            sh 'mvn test'
+        }
+      }
+    }
+    stage('Build') {
+        when {
+            branch 'main'
+        }
+        steps {
+            withMaven {
+                sh 'mvn clean package -DskipTests'
+            }
