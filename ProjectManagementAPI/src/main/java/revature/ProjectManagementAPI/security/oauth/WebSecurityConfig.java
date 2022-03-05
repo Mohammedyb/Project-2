@@ -9,7 +9,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import revature.ProjectManagementAPI.ProjectManagementApiApplication;
@@ -23,6 +27,9 @@ import java.io.IOException;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    ClientRegistrationRepository clientRegistrationRepository;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectManagementApiApplication.class);
 
     /**
@@ -33,7 +40,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/oauth_login", "/oauth/**").permitAll()
+                .antMatchers("/").permitAll().anyRequest().authenticated().and().oauth2Login()
+                /*.antMatchers("/", "/oauth_login", "/oauth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
@@ -61,13 +69,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                         response.sendRedirect("/fragments");
                     }
-                })
+                })*/
                 //.defaultSuccessUrl("/list")
-                .and()
-                .logout().logoutSuccessUrl("/").permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/403");
+                .and().logout()
+                //.logoutSuccessUrl("/logout")
+                .logoutSuccessHandler(oidcLogoutSuccessHandler())
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
         ;
+    }
+
+    private OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler() {
+        OidcClientInitiatedLogoutSuccessHandler successHandler = new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
+        successHandler.setPostLogoutRedirectUri("http://localhost:8080/");
+        return successHandler;
     }
 
     @Autowired
