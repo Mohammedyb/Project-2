@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-dep
+  labels:
+    app: email-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: email-api
+  template:
+    metadata:
+      labels:
+        app: email-api
+    spec:
+      containers:
+        - image: mohammedyb/pmemailapi
+          name: email-api
+          ports:
+            - containerPort: 8081

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-management-dep
+  labels:
+    app: project-management-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project-management-api
+  template:
+    metadata:
+      labels:
+        app: project-management-api
+    spec:
+      containers:
+        - image: mohammedyb/pmapi
+          name: project-management-api
+          ports:
+            - containerPort: 8080
