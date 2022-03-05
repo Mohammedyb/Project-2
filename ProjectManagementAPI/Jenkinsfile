@@ -1,53 +1,48 @@
 pipeline {
-   environment {
-       registry = 'mohammedyb/project2'
-       dockerHubCreds = 'docker_hub'
-       dockerImage = ''
-
-    }
   agent any
+  stages {
     stage('Test') {
-      when {
-        branch 'feature/*'
-      }
-      steps {
-        withMaven {
-            sh 'mvn test'
-        }
-      }
-    }
-    stage('Build') {
-        when {
-            branch 'main'
-        }
-        steps {
-            withMaven {
-                sh 'mvn clean package -DskipTests'
-            }
-        }
-    }
-       stage('Docker Build') {
-            when {
-                branch 'main'
-            }
-            steps {
-                script {
-                    echo "$registry:$currentBuild.number"
-                    dockerImage = docker.build "$registry"
-                }
-            }
-        }
-        stage('Docker Deliver') {
-                when {
-                    branch 'main'
-                }
-                steps {
-                    script {
-                        docker.withRegistry('', dockerHubCreds) {
-                            dockerImage.push("$currentBuild.number")
-                            dockerImage.push("latest")
-                        }
-                    }
-                }
-            }
-  }
+         when {
+           branch 'feature/*'
+         }
+         steps {
+           withMaven {
+               sh 'mvn test'
+           }
+         }
+       }
+       stage('Build') {
+           when {
+               branch 'main'
+           }
+           steps {
+               withMaven {
+                   sh 'mvn clean package -DskipTests'
+               }
+           }
+       }
+         stage('Docker Build') {
+               when {
+                   branch 'main'
+               }
+               steps {
+                   script {
+                       echo "$registry:$currentBuild.number"
+                       dockerImage = docker.build "$registry"
+                   }
+               }
+           }
+           stage('Docker Deliver') {
+               when {
+                   branch 'main'
+               }
+               steps {
+                   script {
+                       docker.withRegistry('', dockerHubCreds) {
+                           dockerImage.push("$currentBuild.number")
+                           dockerImage.push("latest")
+                       }
+                   }
+               }
+           }
+} }
