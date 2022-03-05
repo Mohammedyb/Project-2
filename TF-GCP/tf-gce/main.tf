@@ -9,7 +9,7 @@ terraform {
 
 provider "google" {
   credentials = file("~/spherical-gate-creds.json")
-  project     = "windy-album-339219"
+  project     = "spherical-gate-338602"
   region      = "us-central1-a"
 }
 
