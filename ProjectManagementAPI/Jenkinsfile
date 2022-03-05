@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+  stages {
+    stage('Quality Gate') {
+        steps {
+            withSonarQubeEnv(credentialsId: 'sonarqube', installationName: 'sonarqube') {
+                withMaven {
+                    sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
+    }
+    stage('Test') {
+      when {
+        branch 'feature/*'
+      }
+      steps {
+        withMaven {
+            sh 'mvn test'
+        }
+      }
+    }
+  }
+
+  }
