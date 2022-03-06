@@ -1,6 +1,6 @@
 pipeline {
    environment {
-       git = 'mohammedyb/project-2'
+       registry = 'mohammedyb/project-2'
        dockerHubCreds = 'docker_hub'
        dockerImage = ''
        deploymentFile = 'k8s/deployment.yml'
