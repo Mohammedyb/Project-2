@@ -30,18 +30,18 @@ pipeline {
     }
     stage('Docker Build') {
         when {
-            branch 'main'
+            branch 'mainmain/ProjectManagementAPI'
         }
         steps {
             script {
                 echo "$registry:$currentBuild.number"
-                dockerImage = docker.build -t mohammedyb/pmapi .
+                dockerImage = docker.build "$registry"
             }
         }
     }
     stage('Docker Deliver') {
         when {
-            branch 'main'
+            branch 'mainmain/ProjectManagementAPI'
         }
         steps {
             script {
