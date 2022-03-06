@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.context.WebApplicationContext;
 import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.MasterService;
+import revature.ProjectManagementAPI.service.TeamMemberService;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -42,6 +43,9 @@ public class ControllerMasterTest {
 
     @MockBean
     private MasterService masterService;
+
+    @MockBean
+    private TeamMemberService teamMemberService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -164,5 +168,78 @@ public class ControllerMasterTest {
                 .andExpect(jsonPath("$.meetingCalendarId").value(meeting.getMeetingCalendarId()))
                 .andExpect(jsonPath("$.meetingLength").value(meeting.getMeetingLength()))
                 .andExpect(jsonPath("$.meetingLink").value(meeting.getMeetingLink()));
+    }
+
+    @Test
+    public void shouldGetAllAssignById() throws Exception{
+        Integer userid = 1;
+        List<AssignProject> assignProjectList = new ArrayList<>();
+
+        AssignProject assignProject = new AssignProject(1,1,"test",1,
+                "string");
+        assignProjectList.add(assignProject);
+
+        given(teamMemberService.getAssignByUserId(assignProjectList.get(0).getAssignUserId()))
+                .willReturn(assignProjectList);
+
+        ResultActions response = mockMvc.perform(get("/viewassign/{userid}", userid));
+
+        response.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.size()", is(assignProjectList.size())));
+    }
+
+    @Test
+    public void shouldGetAllMeetingById() throws Exception{
+        Integer id = 1;
+        List<Meeting> meetingList = new ArrayList<>();
+
+        Meeting meeting = new Meeting(1,1,1, "test", 1.0,
+                "test", new Timestamp(System.currentTimeMillis()));
+        meetingList.add(meeting);
+
+        given(teamMemberService.getAllById(meetingList.get(0).getProjectId())).willReturn(meetingList);
+
+        ResultActions response = mockMvc.perform(get("/viewmeeting/{id}", id));
+
+        response.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.size()", is(meetingList.size())));
+    }
+
+    @Test
+    public void shouldGetAllTaskById() throws Exception{
+        Integer userid = 1;
+        List<Task> taskList = new ArrayList<>();
+
+        Task task = new Task(1,"test","test","test","test",
+                1,1);
+        taskList.add(task);
+
+        given(teamMemberService.getAllByUserId(taskList.get(0).getUserId())).willReturn(taskList);
+
+        ResultActions response = mockMvc.perform(get("/viewtask/{userid}", userid));
+
+        response.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.size()", is(taskList.size())));
+    }
+
+    @Test
+    public void shouldGetAllProgressById() throws Exception{
+        Integer projectId = 1;
+        List<TaskProgress> progressList = new ArrayList<>();
+
+        TaskProgress taskProgress = new TaskProgress(1,1,1,
+                "test","test");
+        progressList.add(taskProgress);
+
+        given(teamMemberService.getAllByProjectId(progressList.get(0).getProjectsId())).willReturn(progressList);
+
+        ResultActions response = mockMvc.perform(get("/viewtaskprogress/{projectid}", projectId));
+
+        response.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.size()", is(progressList.size())));
     }
 }

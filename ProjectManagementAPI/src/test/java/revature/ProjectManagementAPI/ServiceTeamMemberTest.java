@@ -15,10 +15,14 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.isNotNull;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static revature.ProjectManagementAPI.models.AuthenticationProvider.LOCAL;
 
 @ExtendWith(MockitoExtension.class)
 class ServiceTeamMemberTest {
@@ -35,6 +39,9 @@ class ServiceTeamMemberTest {
     @Mock
     private AssignRepository assignRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
     @InjectMocks
     private TeamMemberService teamMemberService;
 
@@ -44,6 +51,7 @@ class ServiceTeamMemberTest {
         taskRepository = mock(TaskRepository.class);
         taskProgressRepository = mock(TaskProgressRepository.class);
         assignRepository = mock(AssignRepository.class);
+        userRepository = mock(UserRepository.class);
         teamMemberService = new TeamMemberService();
         teamMemberService.setMeetingRepository(meetingRepository);
         teamMemberService.setTaskRepository(taskRepository);
@@ -63,6 +71,9 @@ class ServiceTeamMemberTest {
 
     private final AssignProject assignProject = new AssignProject(1,1,"test",1,
             "string");
+
+    private final Project project = new Project(1,"test", 1, "test",
+            "test", "test");
 
     @Test
     void shouldReturnProjectById() {
@@ -98,4 +109,13 @@ class ServiceTeamMemberTest {
         List<AssignProject> assignProjects = teamMemberService.getAssignByUserId(assignProject.getAssignUserId());
         assertThat(assignProjects).isNotNull();
     }
+
+//    @Test
+//    void shouldCreateTeamMember() {
+//        User user = new User(1,"email","test","name",
+//                project,new Role(2,"Team Member"),LOCAL);
+//        given(userRepository.save(user)).willReturn(user);
+//        teamMemberService.createNewTeamMemberAfterOAuthSuccess("email","name",LOCAL);
+//        assertEquals(user,teamMemberService.createNewTeamMemberAfterOAuthSuccess("email","name",LOCAL));
+//    }
 }

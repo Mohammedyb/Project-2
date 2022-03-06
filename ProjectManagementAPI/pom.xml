@@ -171,6 +171,34 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	<!-- necessary only if you are using WebDriver -->
+	<dependency>
+		<groupId>org.seleniumhq.selenium</groupId>
+		<artifactId>selenium-htmlunit-driver</artifactId>
+		<version>2.45.0</version>
+		<scope>test</scope>
+	</dependency>
+
+	<!-- necessary only if you are using Geb -->
+	<dependency>
+		<groupId>org.gebish</groupId>
+		<artifactId>geb-spock</artifactId>
+		<version>0.10.0</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.spockframework</groupId>
+		<artifactId>spock-spring</artifactId>
+		<version>1.0-groovy-2.4</version>
+		<scope>test</scope>
+	</dependency>
 	</dependencies>
 
 	<build>

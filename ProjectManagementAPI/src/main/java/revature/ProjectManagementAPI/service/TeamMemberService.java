@@ -2,11 +2,13 @@ package revature.ProjectManagementAPI.service;
 
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import revature.ProjectManagementAPI.DAO.*;
 import revature.ProjectManagementAPI.models.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * TeamMemberService.java
@@ -30,18 +32,18 @@ public class TeamMemberService {
 
     private User activeUser;
 
-    @Autowired
     private ProjectRepository projectRepostiory;
 
     @Autowired
     public TeamMemberService(TaskRepository taskRepository, MeetingRepository meetingRepository,
                              TaskProgressRepository taskProgressRepository, UserRepository userRepository,
-                             AssignRepository assignRepository) {
+                             AssignRepository assignRepository, ProjectRepository projectRepostiory) {
         this.taskRepository = taskRepository;
         this.meetingRepository = meetingRepository;
         this.taskProgressRepository = taskProgressRepository;
         this.userRepository = userRepository;
         this.assignRepository = assignRepository;
+        this.projectRepostiory = projectRepostiory;
     }
 
     public void setTaskRepository(TaskRepository taskRepository) {
@@ -66,6 +68,13 @@ public class TeamMemberService {
 
     public List<AssignProject> getAssignByUserId(Integer userId) { return assignRepository.getAllByAssignUserId(userId); }
 
+    public void setActiveUser(User user){
+        this.activeUser = user;
+    }
+
+    public User getActiveUser(){
+        return activeUser;
+    }
     /**
      * View meeting post by project Id
      *
@@ -93,6 +102,11 @@ public class TeamMemberService {
      * @return task progress
      */
     public TaskProgress save(TaskProgress taskProgress) {
+        Optional<TaskProgress> savedProgress = taskProgressRepository.findByAssignTaskId(taskProgress.getAssignTaskId());
+        if(savedProgress.isPresent()) {
+            throw new ResourceNotFoundException("Task Progress with Assigned Task Id: "
+                    + taskProgress.getAssignTaskId() + " is already existed.");
+        }
         return taskProgressRepository.save(taskProgress);
     }
 
@@ -113,14 +127,17 @@ public class TeamMemberService {
      * @return the updated progress on task
      */
     public TaskProgress update(TaskProgress updateTaskProgress) {
-        TaskProgress taskProgress = taskProgressRepository.findByAssignTaskId(updateTaskProgress.getAssignTaskId());
+        Optional<TaskProgress> taskProgress = taskProgressRepository
+                .findByAssignTaskId(updateTaskProgress.getAssignTaskId());
 
-        taskProgress.setProjectsId(updateTaskProgress.getProjectsId());
-        taskProgress.setProgressStatus(updateTaskProgress.getProgressStatus());
-        taskProgress.setTaskComment(updateTaskProgress.getTaskComment());
-        taskProgressRepository.save(taskProgress);
+        TaskProgress savedProgress =taskProgress.get();
 
-        return taskProgress;
+        savedProgress.setProjectsId(updateTaskProgress.getProjectsId());
+        savedProgress.setProgressStatus(updateTaskProgress.getProgressStatus());
+        savedProgress.setTaskComment(updateTaskProgress.getTaskComment());
+        taskProgressRepository.save(savedProgress);
+
+        return savedProgress;
     }
 
 
@@ -140,11 +157,5 @@ public class TeamMemberService {
         userRepository.save(user);
     }
 
-    public void setActiveUser(User user){
-        this.activeUser = user;
-    }
 
-    public User getActiveUser(){
-        return activeUser;
-    }
 }
