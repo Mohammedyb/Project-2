@@ -34,7 +34,7 @@ pipeline {
         }
         steps {
             script {
-                sh def Dockerfile = ProjectManagementAPI/Dockerfile
+                sh 'def Dockerfile = ProjectManagementAPI/Dockerfile'
                 echo "$registry:$currentBuild.number"
                 dockerImage = docker.build "$registry"
             }
