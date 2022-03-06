@@ -40,6 +40,7 @@ public class HomePageController {
     public String displayHomePage(Model model, @AuthenticationPrincipal OAuth2User principal){
         if (principal != null){
             OAuth2User oauthUser = principal;
+            
             LOGGER.info("AuthenticationSuccessHandler invoked");
             LOGGER.info("Authentication name: " + oauthUser.getAttributes().get("name"));
             oauthUserService.processOAuthPostLogin(oauthUser.getEmail(),oauthUser.getName());
