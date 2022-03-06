@@ -13,5 +13,4 @@ import java.util.List;
 public interface AssignRepository extends JpaRepository<AssignProject, Integer> {
     List<AssignProject> getAllByAssignUserId(Integer userId);
     void deleteAssignProjectByAssignUserId(Integer assignUserId);
-
 }

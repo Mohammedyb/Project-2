@@ -35,6 +35,39 @@
             <td th:text="${task.dueTime}"/>
         </tr>
     </tbody>
+    <br>
+    <br>
+    <tbody>
+    <br>
+    <br>
+    <h3>Projects: </h3>
+    <tr th:each="project: ${projects}">
+        Name:
+        <td th:text="${project.name}"/>
+        <br>
+        Project Manager:
+        <td th:text="${project.projectManager}"/>
+        <br>
+        <h4> Description: </h4>
+        <td th:text="${project.projectDescription}"/>
+        <h4> Deadline: </h4>
+        <td th:text="${project.deadline}"/>
+
+    </tr>
+    </tbody>
+    <tbody>
+    <br>
+    <br>
+    <h3>Meetings: </h3>
+    <tr th:each="meeting: ${meetings}">
+        <td th:switch="${meeting.meetingType}">
+            <span th:case="'4'" th:text="'Daily Standup'"/>
+            <span th:case="'5'" th:text="'Sprint Review'"/>
+            <span th:case="'6'" th:text="'Daily Standup'"/>
+        </td>
+    </tr>
+    <br>
+    </tbody>
 </div>
 </body>
 </head>

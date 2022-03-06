@@ -29,6 +29,9 @@ public class TeamMemberService {
     private AssignRepository assignRepository;
 
     @Autowired
+    private ProjectRepository projectRepostiory;
+
+    @Autowired
     public TeamMemberService(TaskRepository taskRepository, MeetingRepository meetingRepository,
                              TaskProgressRepository taskProgressRepository, UserRepository userRepository,
                              AssignRepository assignRepository) {
@@ -117,6 +120,7 @@ public class TeamMemberService {
 
         return taskProgress;
     }
+
 
     public void createNewTeamMemberAfterOAuthSuccess(String email, String name, AuthenticationProvider provider) {
         User user = new User();
