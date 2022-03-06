@@ -1,6 +1,6 @@
 pipeline {
    environment {
-       registry = 'mohammedyb/pmapi'
+       def docker = 'mohammedyb/pmapi'
        dockerHubCreds = 'docker_hub'
        dockerImage = ''
        deploymentFile = 'k8s/deployment.yml'
