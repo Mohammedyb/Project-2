@@ -84,7 +84,7 @@ pipeline {
             step([$class: 'KubernetesEngineBuilder',
                 projectId: 'spherical-gate-338602',
                 clusterName: 'spherical-gate-338602-gke',
-                zone: 'us-east1',
+                zone: 'us-central1',
                 manifestPattern: 'k8s/',
                 credentialsId: 'spherical-gate-338602',
                 verifyDeployments: true
