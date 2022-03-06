@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-management-dep
+  labels:
+    app: project-management-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: project-management-api
+  template:
+    metadata:
+      labels:
+        app: project-management-api
+    spec:
+      containers:
+        - image: mohammedyb/pmapi
+          imagePullPolicy: Always
+          name: project-management-api
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+spec:
+  selector:
+    app: project-management-api
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pm-service
+spec:
+  selector:
+    app: project-management-api
+  ports:
+    - port: 8080
+      targetPort: 8080
+  externalTrafficPolicy: Local
+  type: LoadBalancer
