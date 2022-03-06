@@ -1,0 +1,165 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marathon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa:wght@300&family=Permanent+Marker&family=Prompt:wght@100&family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <style>
+        body {
+          background-image: url("https://www.cio.com/wp-content/uploads/2021/12/group_discussion_around_a_table_in_an_office_workspace_collaboration_communication_planning_strategy_tactics_teamwork_by_gaudilab_shutterstock_1100733734_2400x1600-100890806-orig-1.jpg?quality=50&strip=all");
+          background-size: cover;
+          background-repeat: no-repeat;
+          color: white;
+        }
+
+        .nav-bg {
+          background-color: #1b1a1a;
+          font-family: 'Permanent Marker', cursive;
+          font-size: large;
+          padding: .3em;
+        }
+
+        .main-bg {
+          background-color: #1b1a1a;
+          border-radius: 5px;
+          padding: 1em;
+          box-shadow: 0px 0px 5px 5px #000000;
+        }
+
+        .loginBtn {
+          transition: all .5s ease;
+          color: #fff;
+          font-family: 'Secular One', sans-serif;
+          text-align: center;
+          line-height: 1;
+          font-size: 22px;
+          background-color : #0275d8;
+          outline: none;
+          border-radius: 4px;
+        }
+
+        .loginBtn:hover {
+          color: #fff;
+          background-color: rgb(25, 135, 84);
+        }
+
+        .loginTitle {
+            font-family: 'Comfortaa', cursive;
+            font-weight: bold;
+        }
+
+        .link {
+          transition: all .5s ease;
+          color: #fff;
+          text-align: center;
+          font-size: 18px;
+        }
+
+        a:not([href]):not([tabindex]):hover {
+          cursor: pointer;
+          color: #529ddf;
+          text-decoration: underline;
+        }
+
+        .btn-primary {
+          color: #fff;
+          background-color: #1b6ec2;
+          border-color: #1861ac;
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+          color: #fff;
+          background-color: #1b6ec2;
+          border-color: #1861ac;
+        }
+
+        hr {
+            background-color: white;
+        }
+
+        /* Sticky footer styles
+        &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; */
+        html {
+          font-size: 14px;
+        }
+        @media (min-width: 768px) {
+          html {
+            font-size: 16px;
+          }
+        }
+
+        .border-top {
+          border-top: 1px solid #e5e5e5;
+        }
+        .border-bottom {
+          border-bottom: 1px solid #e5e5e5;
+        }
+
+        .box-shadow {
+          box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        }
+
+        button.accept-policy {
+          font-size: 1rem;
+          line-height: inherit;
+        }
+
+        /* Sticky footer styles
+        &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; */
+        html {
+          position: relative;
+          min-height: 100%;
+        }
+
+        body {
+          /* Margin bottom by footer height */
+          margin-bottom: 60px;
+        }
+        .footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          white-space: nowrap;
+          line-height: 60px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark text-light border-bottom box-shadow nav-bg">
+        <div class="container">
+            <h2>Marathon</h2>
+        </div>
+    </nav>
+</header>
+<div class="container rounded main-bg text-light col-2 mt-5">
+    <form  method="post" class="text-center p-2">
+        <div class="text-light">
+            <h2 class="loginTitle text-center">Register</h2>
+            <label></label>
+            <input class="form-control mb-2" placeholder="Full Name">
+            <input class="form-control mt-4" placeholder="Email">
+            <input type="password" class="form-control mt-4" placeholder="Password">
+            <input type="password" class="form-control mt-4" placeholder="Confirm Password">
+            <hr/>
+            <div class="mt-3">
+                <input type="submit" value="Register" class="loginBtn btn">
+            </div>
+            <p class="d-inline-flex mr-1 mt-4">Already have an account?</p>
+            <a class="link" href="../static/index.html">Log In</a>
+        </div>
+    </form>
+</div>
+<footer class="border-top footer bg-dark text-light nav-bg">
+    <div class="container">
+        &copy; 2022 - Marathon
+    </div>
+</footer>
+</body>
+</html>-->
