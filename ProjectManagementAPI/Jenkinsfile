@@ -78,8 +78,9 @@ pipeline {
             branch 'main'
         }
         steps{
-           sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./k8s/deployment.yml'
-           sh 'cat ./k8s/deployment.yml'
+           sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./Project-2/blob/main/ProjectManagementAPI/k8s/deployment.yml'
+
+           sh 'cat ./Project-2/blob/main/ProjectManagementAPI/k8s/deployment.yml'
             step([$class: 'KubernetesEngineBuilder',
                 projectId: 'spherical-gate-338602',
                 clusterName: 'spherical-gate-338602-gke',
