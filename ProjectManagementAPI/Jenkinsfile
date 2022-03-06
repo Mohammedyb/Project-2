@@ -41,7 +41,7 @@ pipeline {
     }
     stage('Docker Deliver') {
         when {
-            branch 'mainmain/ProjectManagementAPI'
+            branch 'main/ProjectManagementAPI'
         }
         steps {
             script {
@@ -74,7 +74,7 @@ pipeline {
     }
     stage('Deploy to GKE') {
         when {
-            branch 'main'
+            branch 'main/ProjectManagementAPI'
         }
         steps{
            sh 'sed -i "s/%TAG%/$BUILD_NUMBER/g" ./k8s/deployment.yml'
