@@ -41,17 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll().anyRequest().authenticated().and().oauth2Login()
-                /*.antMatchers("/", "/oauth_login", "/oauth/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll()
-                .loginPage("/oauth_login")
-                .usernameParameter("email")
-                .passwordParameter("pass")
-                .defaultSuccessUrl("/fragments")
-                .and()
-                .oauth2Login()
-                .loginPage("/oauth_login")
+                /*.loginPage("/")
                 .userInfoEndpoint()
                 .userService(oauthUserService)
                 .and()
@@ -65,12 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         LOGGER.info("Authentication name: " + oauthUser.getAttributes().get("name"));
 
                         //TODO Implement
-                        oauthUserService.processOAuthPostLogin((String) oauthUser.getAttributes().get("email"));
+                        oauthUserService.processOAuthPostLogin((String) oauthUser.getAttributes().get("email"), (String) oauthUser.getEmail());
 
-                        response.sendRedirect("/fragments");
+                        response.sendRedirect("/home");
                     }
-                })*/
-                //.defaultSuccessUrl("/list")
+                })
+                .defaultSuccessUrl("/home")*/
                 .and().logout()
                 //.logoutSuccessUrl("/logout")
                 .logoutSuccessHandler(oidcLogoutSuccessHandler())

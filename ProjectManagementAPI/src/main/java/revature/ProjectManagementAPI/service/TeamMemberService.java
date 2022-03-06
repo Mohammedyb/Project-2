@@ -120,6 +120,7 @@ public class TeamMemberService {
 
     public void createNewTeamMemberAfterOAuthSuccess(String email, String name, AuthenticationProvider provider) {
         User user = new User();
+        user.setRoles(new Role(2, "Team Member"));
         user.setEmail(email);
         user.setName(name);
         user.setAuthProvider(provider);

@@ -8,11 +8,33 @@
     </head>
 <body>
 <div>
-    Welcome <span th:text = "${name}"></span>
-
-    <div>
-        <a href="https://mail.google.com/mail/u/0/?logout&hl=en?continue=http://localhost:8080/logout">Logout</a>
-    </div>
+    Welcome <span th:text = "${name}"></span> <a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/logout">Logout</a>
+    <br>
+    Email: <span th:text = "${email}"></span>
+    <br>
+</div>
+<div>
+<!--    <div>-->
+<!--&lt;!&ndash;        <a th:href = "@{/view}"> View All Projects</a>&ndash;&gt;-->
+<!--        -->
+<!--    </div>-->
+    <tbody>
+        <br>
+        <br>
+        <h4>Tasks: </h4>
+        <tr th:each="task: ${tasks}">
+            Name:
+            <td th:text="${task.name}"/>
+            <br>
+            Description:
+            <td th:text="${task.description}"/>
+            <br>
+            <h5> Due Date: </h5>
+            <td th:text="${task.dueDate}"/>
+            <h5> Due Time: </h5>
+            <td th:text="${task.dueTime}"/>
+        </tr>
+    </tbody>
 </div>
 </body>
 </head>
