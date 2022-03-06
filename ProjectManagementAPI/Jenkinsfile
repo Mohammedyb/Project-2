@@ -80,7 +80,7 @@ pipeline {
                   manifestPattern: 'k8s/',
                   credentialsId: 'spherical-gate-338602'
                   verifyDeployments: true
-              ])
+                   ])
 
               cleanWs()
 
@@ -88,7 +88,7 @@ pipeline {
                   link: BUILD_URL, result: currentBuild.currentResult,
                   title: JOB_NAME,
                   webhookURL: "https://discord.com/api/webhooks/949894222595629067/-xHBAWXS4RaovxJg6ubE674itYLVy57PEzCtMQq1aU1-6P8dTIsqzhhqRMWWSzUI_LMc"
-                  
+
           }
       }
     }
