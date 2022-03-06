@@ -3,7 +3,7 @@ pipeline {
        registry = 'mohammedyb/pmapi'
        dockerHubCreds = 'docker_hub'
        dockerImage = ''
-       deploymentFile = 'k8s/deployment.yml'
+       deploymentFile = 'main/ProjectManagementAPI/k8s/deployment.yml'
     }
   agent any
   stages {
