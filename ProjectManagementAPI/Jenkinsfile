@@ -30,7 +30,7 @@ pipeline {
     }
     stage('Docker Build') {
         when {
-            branch 'mainmain/ProjectManagementAPI'
+            branch 'main/ProjectManagementAPI'
         }
         steps {
             script {
