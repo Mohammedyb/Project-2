@@ -13,6 +13,5 @@ import java.util.Optional;
 public interface TaskProgressRepository extends JpaRepository<TaskProgress, Integer> {
     TaskProgress findByAssignTaskId(Integer assignTaskId);
     List<TaskProgress> getAllByProjectsId(Integer projectId);
-
-
+    List<TaskProgress> getAllByAssignTaskId(Integer user_id);
 }

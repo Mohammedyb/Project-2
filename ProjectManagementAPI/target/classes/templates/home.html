@@ -35,6 +35,43 @@
             <td th:text="${task.dueTime}"/>
         </tr>
     </tbody>
+    <tbody>
+    <br>
+    <br>
+    <h3>Task Progress: </h3>
+    <tr th:each="taskProg: ${taskProgress}">
+        Status:
+        <td th:text="${taskProg.progressStatus}"/>
+        <br>
+        Comment:
+        <td th:text="${taskProg.taskComment}"/>
+        <br>
+        <br>
+    </tr>
+    </tbody>
+    <br>
+    <br>
+
+    <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">
+        <table border="1">
+            <tr>
+                <td>Progress Status:</td>
+                <td><input type="text" th:field="*{progressStatus}" /></td>
+            </tr>
+            <tr>
+                <td>Comment:</td>
+                <td><input type="text" th:field="*{taskComment}" /></td>
+            </tr>
+            <tr>
+                <td>Project ID:</td>
+                <td><input type="number" th:field="*{projectsId}" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+
     <br>
     <br>
     <tbody>
@@ -48,6 +85,8 @@
         Project Manager:
         <td th:text="${project.projectManager}"/>
         <br>
+        ID:
+        <td th:text="${project.id}"/>
         <h4> Description: </h4>
         <td th:text="${project.projectDescription}"/>
         <h4> Deadline: </h4>

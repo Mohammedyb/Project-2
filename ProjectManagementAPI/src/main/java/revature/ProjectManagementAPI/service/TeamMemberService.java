@@ -28,6 +28,8 @@ public class TeamMemberService {
 
     private AssignRepository assignRepository;
 
+    private User activeUser;
+
     @Autowired
     private ProjectRepository projectRepostiory;
 
@@ -136,5 +138,13 @@ public class TeamMemberService {
         user.setName(name);
         user.setAuthProvider(google);
         userRepository.save(user);
+    }
+
+    public void setActiveUser(User user){
+        this.activeUser = user;
+    }
+
+    public User getActiveUser(){
+        return activeUser;
     }
 }

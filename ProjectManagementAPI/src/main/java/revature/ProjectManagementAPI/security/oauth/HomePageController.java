@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import revature.ProjectManagementAPI.DAO.MeetingRepository;
 import revature.ProjectManagementAPI.DAO.ProjectRepository;
+import revature.ProjectManagementAPI.DAO.TaskProgressRepository;
 import revature.ProjectManagementAPI.DAO.UserRepository;
 import revature.ProjectManagementAPI.ProjectManagementApiApplication;
 import revature.ProjectManagementAPI.models.*;
@@ -30,6 +31,8 @@ public class HomePageController {
     OAuth2UserService oauthUserService;
     @Autowired
     MeetingRepository meetingRepository;
+    @Autowired
+    TaskProgressRepository taskProgressRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectManagementApiApplication.class);
 
@@ -42,9 +45,16 @@ public class HomePageController {
             oauthUserService.processOAuthPostLogin(oauthUser.getEmail(),oauthUser.getName());
 
             User user = setupUserModel(model, principal);
+            teamMemberService.setActiveUser(user);
             viewAssignedTasks(model, user);
             viewAssignedProjects(model, user);
             viewAssignedMeetings(model, user);
+            TaskProgress newProgress = new TaskProgress();
+            newProgress.setAssignTaskId(user.getId());
+            model.addAttribute("newProgress", newProgress);
+        }
+        else{
+            teamMemberService.setActiveUser(null);
         }
         //returns a view
         return "home";
@@ -58,6 +68,7 @@ public class HomePageController {
         model.addAttribute("email", email);
         User user = userRepository.getUserByEmail(email);
         model.addAttribute("id", user.getId());
+        model.addAttribute("user", user);
         return  user;
     }
 
@@ -74,6 +85,8 @@ public class HomePageController {
     public void viewAssignedTasks(Model model, User user){
         List<Task> tasks = teamMemberService.getAllByUserId(user.getId());
         model.addAttribute("tasks", tasks);
+        List<TaskProgress> taskProgressList = taskProgressRepository.getAllByAssignTaskId(user.getId());
+        model.addAttribute("taskProgress", taskProgressList);
     }
 
     public void viewAssignedMeetings(Model model, User user){

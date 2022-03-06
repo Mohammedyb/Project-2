@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.TeamMemberService;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -19,8 +23,8 @@ import java.util.List;
  *   create progress on task, updating progress for task,
  *   and view all task progress by project id
  */
-@RestController
-@RequestMapping("team")
+@Controller
+/*@RequestMapping("team")*/
 public class TeamMembersController {
 
     private final TeamMemberService teamMemberService;
@@ -85,14 +89,15 @@ public class TeamMembersController {
     /**
      * Create new task progress
      *
-     * @param taskProgress the user's progress on each task with comment
+     * @param newProgress the user's progress on each task with comment
      * @return task progress
      */
-    @PostMapping(value = "/progress", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public TaskProgress createProgress(@RequestBody TaskProgress taskProgress) {
+    @RequestMapping(value = "/progress", method = RequestMethod.POST)
+    public String createProgress(@ModelAttribute("newProgress") TaskProgress newProgress, Model model) {
         LOGGER.info("Team Member is updating progress for their task");
-        return teamMemberService.save(taskProgress);
+        newProgress.setAssignTaskId(teamMemberService.getActiveUser().getId());
+        teamMemberService.save(newProgress);
+        return "redirect:/home";
     }
 
     /**
