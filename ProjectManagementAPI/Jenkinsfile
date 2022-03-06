@@ -23,7 +23,8 @@ pipeline {
         }
         steps {
             withMaven {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn -f ProjectManagementAPI/pom.xml clean install'
+                sh 'mvn -f ProjectManagementAPI/pom.xml clean package -DskipTests'
             }
         }
     }

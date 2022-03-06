@@ -24,7 +24,7 @@ import java.util.List;
  *   and view all task progress by project id
  */
 @Controller
-/*@RequestMapping("team")*/
+//@RequestMapping("team")
 public class TeamMembersController {
 
     private final TeamMemberService teamMemberService;
