@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns: sec = "http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Marathon</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Comfortaa:wght@300&amp;family=Permanent+Marker&amp;family=Prompt:wght@100&amp;family=Secular+One&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa:wght@300&family=Permanent+Marker&family=Prompt:wght@100&family=Secular+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <style>
@@ -32,16 +32,15 @@
         }
 
         .loginBtn {
-          transition: all .4s ease;
+          transition: all .5s ease;
           color: #fff;
           font-family: 'Secular One', sans-serif;
           text-align: center;
           line-height: 1;
-          font-size: 18px;
-          background-color : #14518f;
-          border-color: #1861ac;
-          padding: .55em;
-          border-radius: 8px;
+          font-size: 22px;
+          background-color : #0275d8;
+          outline: none;
+          border-radius: 4px;
         }
 
         .loginBtn:hover {
@@ -55,7 +54,7 @@
         }
 
         .link {
-          transition: all .1s ease;
+          transition: all .5s ease;
           color: #fff;
           text-align: center;
           font-size: 18px;
@@ -81,11 +80,6 @@
 
         hr {
             background-color: white;
-        }
-
-        .m-img {
-            width: 30px;
-            height: 30px;
         }
 
         /* Sticky footer styles
@@ -136,36 +130,35 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark text-light border-bottom box-shadow nav-bg">
-            <div class="container">
-                <h2><img src="https://raw.githubusercontent.com/Mohammedyb/Project-2/main/M-MERLA.png" alt="logo" class="m-img mr-1 mb-1">arathon</h2>
-            </div>
-        </nav>
-    </header>
-    <div class="container rounded main-bg text-light col-2 mt-5">
-        <form method="post" class="text-center p-2">
-            <div class="text-light">
-                <h2 class="loginTitle text-center">Log In</h2>
-                <hr>
-                <!--<input class="form-control mb-2" placeholder="Email">
-                <input type="password" class="form-control mt-4" placeholder="Password">
-
-                <div class="mt-3">
-                    <input type="submit" value="Log In" class="loginBtn btn">
-                </div>-->
-                <div>
-                    <a href="/home" class="loginBtn btn btn-md btn-block text-center m-b-20"><img src="https://img.icons8.com/color/18/000000/google-logo.png" class="mr-1">Log In with Google</a>
-                </div>
-                <p class="d-inline-flex mr-1 mt-4">Don't have an account?</p>
-                <a class="link" href="../templates/register.html">Register</a>
-            </div>
-        </form>
-    </div>
-    <footer class="border-top footer text-light nav-bg">
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark text-light border-bottom box-shadow nav-bg">
         <div class="container">
-            © 2022 - Marathon
+            <h2>Marathon</h2>
         </div>
-    </footer>
+    </nav>
+</header>
+<div class="container rounded main-bg text-light col-2 mt-5">
+    <form  method="post" class="text-center p-2">
+        <div class="text-light">
+            <h2 class="loginTitle text-center">Register</h2>
+            <label></label>
+            <input class="form-control mb-2" placeholder="Full Name">
+            <input class="form-control mt-4" placeholder="Email">
+            <input type="password" class="form-control mt-4" placeholder="Password">
+            <input type="password" class="form-control mt-4" placeholder="Confirm Password">
+            <hr/>
+            <div class="mt-3">
+                <input type="submit" value="Register" class="loginBtn btn">
+            </div>
+            <p class="d-inline-flex mr-1 mt-4">Already have an account?</p>
+            <a class="link" href="index.html">Log In</a>
+        </div>
+    </form>
+</div>
+<footer class="border-top footer bg-dark text-light nav-bg">
+    <div class="container">
+        &copy; 2022 - Marathon
+    </div>
+</footer>
 </body>
 </html>
