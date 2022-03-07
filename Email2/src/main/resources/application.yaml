@@ -3,16 +3,16 @@ server:
   port: 8081
   servlet:
     context-path:
+spring:
   mail:
     host: smtp.gmail.com
     port: 587
     username: project02sender@gmail.com
-    password: fyauuhbligfbbryz
+    password: p@$$w0rd123
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-    smtp:
-      debug: true
+            debug: true
