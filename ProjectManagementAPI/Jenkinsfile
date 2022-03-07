@@ -4,7 +4,7 @@ pipeline {
        dockerHubCreds = 'docker_hub'
        dockerImage = ''
        deploymentFile = 'k8s/deployment.yml'
-
+   }
   agent any
   stages {
     stage('Test') {
@@ -97,4 +97,4 @@ pipeline {
         }
     }
   }
-}}
+}
