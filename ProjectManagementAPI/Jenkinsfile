@@ -16,7 +16,7 @@ pipeline {
             sh 'mvn test'
         }
       }
-    }
+
     stage('Build') {
         when {
             branch 'main'
