@@ -34,7 +34,7 @@ spec:
       targetPort: 8080
 ---
 apiVersion: networking.k8s.io/v1
-  kind: Ingress
+kind: Ingress
   metadata:
     name: api-ingress
   spec:
