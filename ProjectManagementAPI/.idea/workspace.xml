@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d4b54a19-5e37-431c-8046-4fc111cac8a7" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="260vBNWu9Y49DaBR9nBxBPCTkEA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.ProjectManagementApiApplication">
+    <configuration name="ControllerMemberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjectManagementAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="revature.ProjectManagementAPI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="revature.ProjectManagementAPI" />
+      <option name="MAIN_CLASS_NAME" value="revature.ProjectManagementAPI.ControllerMemberTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <envs>
+        <env name="API2URL" value=" http://localhost:8081/email" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OAuth2UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjectManagementAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="revature.ProjectManagementAPI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="revature.ProjectManagementAPI" />
+      <option name="MAIN_CLASS_NAME" value="revature.ProjectManagementAPI.OAuth2UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjectManagementAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="revature.ProjectManagementAPI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="revature.ProjectManagementAPI" />
+      <option name="MAIN_CLASS_NAME" value="revature.ProjectManagementAPI.RepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceMasterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjectManagementAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="revature.ProjectManagementAPI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="revature.ProjectManagementAPI" />
+      <option name="MAIN_CLASS_NAME" value="revature.ProjectManagementAPI.ServiceMasterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTeamMemberTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProjectManagementAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="revature.ProjectManagementAPI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="revature.ProjectManagementAPI" />
+      <option name="MAIN_CLASS_NAME" value="revature.ProjectManagementAPI.ServiceTeamMemberTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectManagementApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ProjectManagementAPI" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="revature.ProjectManagementAPI.ProjectManagementApiApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs>
+        <env name="API2URL" value="http://localhost:8081/email" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.ControllerMemberTest" />
+      <item itemvalue="Spring Boot.ProjectManagementApiApplication" />
+      <item itemvalue="JUnit.OAuth2UserTest" />
+      <item itemvalue="JUnit.RepositoryTest" />
+      <item itemvalue="JUnit.ServiceMasterTest" />
+      <item itemvalue="JUnit.ServiceTeamMemberTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ServiceTeamMemberTest" />
+        <item itemvalue="JUnit.ServiceMasterTest" />
+        <item itemvalue="JUnit.RepositoryTest" />
+        <item itemvalue="JUnit.OAuth2UserTest" />
+        <item itemvalue="JUnit.ControllerMemberTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4b54a19-5e37-431c-8046-4fc111cac8a7" name="Changes" comment="" />
+      <created>1646573182201</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646573182201</updated>
+      <workItem from="1646573183409" duration="36078000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/revature/ProjectManagementAPI/RepositoryTest.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/revature/ProjectManagementAPI/RepositoryTest.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/revature/ProjectManagementAPI/RepositoryTest.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/revature/ProjectManagementAPI/service/TeamMemberService.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerTeamMembersTest_shouldGetAllAssignById.ic" NAME="ControllerTeamMembersTest.shouldGetAllAssignById Coverage Results" MODIFIED="1646574038056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerLoginTest.ic" NAME="ControllerLoginTest Coverage Results" MODIFIED="1646657926198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerMasterTest.ic" NAME="ControllerMasterTest Coverage Results" MODIFIED="1646657949211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerHomePageTest.ic" NAME="ControllerHomePageTest Coverage Results" MODIFIED="1646657530539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$OAuth2UserTest.ic" NAME="OAuth2UserTest Coverage Results" MODIFIED="1646657984129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$OAuth2UserTest_shouldReturnAttributes.ic" NAME="OAuth2UserTest.shouldReturnAttributes Coverage Results" MODIFIED="1646608392223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerMemberTest.ic" NAME="ControllerMemberTest Coverage Results" MODIFIED="1646657966108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$RepositoryTest_shouldReturnAllByUserId.ic" NAME="RepositoryTest.shouldReturnAllByUserId Coverage Results" MODIFIED="1646575247813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ServiceTeamMemberTest.ic" NAME="ServiceTeamMemberTest Coverage Results" MODIFIED="1646658005735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerMemberTest_shouldUpdateProgress.ic" NAME="ControllerMemberTest.shouldUpdateProgress Coverage Results" MODIFIED="1646650824071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$RepositoryTest.ic" NAME="RepositoryTest Coverage Results" MODIFIED="1646657991286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ServiceMasterTest.ic" NAME="ServiceMasterTest Coverage Results" MODIFIED="1646657998558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerTeamMembersTest.ic" NAME="ControllerTeamMembersTest Coverage Results" MODIFIED="1646583824103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ControllerLoginTest_shouldReturnOathLoginHeader.ic" NAME="ControllerLoginTest.shouldReturnOathLoginHeader Coverage Results" MODIFIED="1646590618710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$RepositoryTest_shouldReturnProgressByTaskId.ic" NAME="RepositoryTest.shouldReturnProgressByTaskId Coverage Results" MODIFIED="1646576393185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$OAuth2UserTest_shouldReturnName.ic" NAME="OAuth2UserTest.shouldReturnName Coverage Results" MODIFIED="1646606704015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProjectManagementAPI$ServiceTeamMemberTest_shouldUpdateProgress.ic" NAME="ServiceTeamMemberTest.shouldUpdateProgress Coverage Results" MODIFIED="1646651126375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>revature.ProjectManagementAPI.*</FILTER>
+    </SUITE>
+  </component>
+</project>
