@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-dep
+  labels:
+    app: email-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: email-api
+  template:
+    metadata:
+      labels:
+        app: email-api
+    spec:
+      containers:
+        - image: mohammedyb/pmemailapi
+          imagePullPolicy: Always
+          name: email-api
+          ports:
+            - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-service
+spec:
+  selector:
+    app: email-api
+  type: NodePort
+  ports:
+    - port: 8081
+      targetPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-service
+spec:
+  selector:
+    app: email-api
+  ports:
+    - port: 8081
+      targetPort: 8081
+  externalTrafficPolicy: Local
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: email-ingress
+spec:
+  defaultBackend:
+    service:
+      name: demo-service
+      port:
+        number: 8081
