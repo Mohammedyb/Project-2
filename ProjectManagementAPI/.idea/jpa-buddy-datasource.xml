@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="2a8828d8-a466-4cc6-8e1d-e0d2ddbf3fd7" name="ProjectManagementAPI" url="jdbc:postgresql://35.230.43.68:5432/postgres" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>
