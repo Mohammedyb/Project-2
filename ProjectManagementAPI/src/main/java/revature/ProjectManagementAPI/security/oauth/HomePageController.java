@@ -90,8 +90,8 @@ public class HomePageController {
     }
 
     public void viewAssignedMeetings(Model model, User user){
-        List<Meeting> meetings = teamMemberService.getAllById(user.getProjects().getId());
-        model.addAttribute("meetings", meetings);
+//        List<Meeting> meetings = teamMemberService.getAllById(user.getProjects().getId());
+//        model.addAttribute("meetings", meetings);
         /*List<String> meetingTypes = new ArrayList<>();
         meetingTypes.add("Daily Standup");
         meetingTypes.add("Sprint Review");
