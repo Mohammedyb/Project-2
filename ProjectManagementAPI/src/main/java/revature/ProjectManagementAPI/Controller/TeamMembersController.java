@@ -3,6 +3,7 @@ package revature.ProjectManagementAPI.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.TeamMemberService;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,9 +30,12 @@ import java.util.List;
 @Controller
 //@RequestMapping("team")
 public class TeamMembersController {
+    @Value("${api.config.api2URL:http://localhost:8081/email}")
+    String url;
 
+    @Autowired
+    private RestTemplate restTemplate;
     private final TeamMemberService teamMemberService;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(TeamMembersController.class);
 
     @Autowired
@@ -93,11 +100,25 @@ public class TeamMembersController {
      * @return task progress
      */
     @RequestMapping(value = "/progress", method = RequestMethod.POST)
-    public String createProgress(@ModelAttribute("newProgress") TaskProgress newProgress, Model model) {
+    public String createProgress(@ModelAttribute("newProgress") TaskProgress newProgress, Model model) throws URISyntaxException {
         LOGGER.info("Team Member is updating progress for their task");
         newProgress.setAssignTaskId(teamMemberService.getActiveUser().getId());
         teamMemberService.save(newProgress);
+        // params for email are to, subject and content respectively
+        List<String> emailInfo = new ArrayList<>();
+        emailInfo.add(teamMemberService.getActiveUser().getEmail());
+        emailInfo.add("Progress Added to Task");
+        emailInfo.add("Thanks for updating your task " + teamMemberService.getActiveUser().getName()
+                + ". You should see this reflected on your project page. - Marathon");
+        ResponseEntity resp = restTemplate.postForEntity(url, emailInfo, null);
+        if(resp.getStatusCode().is5xxServerError()) {
+            ResponseEntity.internalServerError().build();
+        }
+        else{
+            ResponseEntity.noContent().build();
+        }
         return "redirect:/home";
+        /*return ResponseEntity.noContent().build();*/
     }
 
     /**

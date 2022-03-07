@@ -103,11 +103,11 @@ public class TeamMemberService {
      * @return task progress
      */
     public TaskProgress save(TaskProgress taskProgress) {
-        Optional<TaskProgress> savedProgress = taskProgressRepository.findByAssignTaskId(taskProgress.getAssignTaskId());
+        /*Optional<TaskProgress> savedProgress = taskProgressRepository.findByAssignTaskId(taskProgress.getAssignTaskId());
         if(savedProgress.isPresent()) {
             throw new ResourceNotFoundException("Task Progress with Assigned Task Id: "
                     + taskProgress.getAssignTaskId() + " is already existed.");
-        }
+        }*/
         return taskProgressRepository.save(taskProgress);
     }
 

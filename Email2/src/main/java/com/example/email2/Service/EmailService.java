@@ -4,6 +4,7 @@ import com.example.email2.DTO.EmailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,14 @@ import java.io.UnsupportedEncodingException;
 
 @Service("mailService")
 public class EmailService {
-    private JavaMailSender emailSender;
+    private JavaMailSenderImpl emailSender;
 
     public EmailService() {
     }
 
-    public EmailService(JavaMailSender emailSender) {
-        this.emailSender = emailSender;
+    @Autowired
+    public EmailService(JavaMailSenderImpl javaMailSender) {
+        this.emailSender = javaMailSender;
     }
 
     public void sendEmail(EmailDTO mail) {
