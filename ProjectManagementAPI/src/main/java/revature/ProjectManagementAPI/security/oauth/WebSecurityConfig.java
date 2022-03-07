@@ -30,6 +30,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     ClientRegistrationRepository clientRegistrationRepository;
 
+    @Autowired
+    private OAuth2UserService oauthUserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectManagementApiApplication.class);
 
     /**
@@ -76,8 +82,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return successHandler;
     }
 
-    @Autowired
-    private OAuth2UserService oauthUserService;
-    @Autowired
-    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
 }

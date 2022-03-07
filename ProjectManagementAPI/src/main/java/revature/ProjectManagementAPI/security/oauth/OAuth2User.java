@@ -9,7 +9,14 @@ public class OAuth2User implements org.springframework.security.oauth2.core.user
 
     private org.springframework.security.oauth2.core.user.OAuth2User oAuth2User;
 
+    public OAuth2User() {
+    }
+
     public OAuth2User(org.springframework.security.oauth2.core.user.OAuth2User oAuth2User) {
+        this.oAuth2User = oAuth2User;
+    }
+
+    public void setoAuth2User(org.springframework.security.oauth2.core.user.OAuth2User oAuth2User) {
         this.oAuth2User = oAuth2User;
     }
 

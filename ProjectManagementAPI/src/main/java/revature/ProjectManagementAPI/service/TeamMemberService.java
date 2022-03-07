@@ -75,6 +75,7 @@ public class TeamMemberService {
     public User getActiveUser(){
         return activeUser;
     }
+
     /**
      * View meeting post by project Id
      *
