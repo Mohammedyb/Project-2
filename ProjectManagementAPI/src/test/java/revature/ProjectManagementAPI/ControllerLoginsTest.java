@@ -20,8 +20,7 @@ import java.io.IOException;
 @WebAppConfiguration
 @WithMockUser
 @SpringBootTest(classes = {ProjectManagementApiApplication.class})
-public class ControllerLoginTest {
-
+public class ControllerLoginsTest {
     @Autowired
     WebApplicationContext context;
 

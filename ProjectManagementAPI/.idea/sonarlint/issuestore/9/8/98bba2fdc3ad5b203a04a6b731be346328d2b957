@@ -1,0 +1,31 @@
+
+J
+java:S3416'"4Update this logger to use "WebSecurityConfig.class".(ÂÜø
+Q	java:S1256"<This block of commented-out lines of code should be removed.(Š¹ı
+M
+java:S1135?"2Complete the task associated to this TODO comment.(Í€Û½üÿÿÿÿ
+I
+java:S1128"3Remove this unused import 'lombok.extern.java.Log'.(Ë¡±ì
+c
+java:S1128"MRemove this unused import 'org.springframework.security.core.Authentication'.(ñıÓ“
+„
+java:S1128"iRemove this unused import 'org.springframework.security.web.authentication.AuthenticationSuccessHandler'.(Â©ŠÏüÿÿÿÿ
+w
+java:S1128"\Remove this unused import 'org.springframework.security.web.csrf.CookieCsrfTokenRepository'.(‰—Şµøÿÿÿÿ
+v
+java:S1128"`Remove this unused import 'org.springframework.security.web.util.matcher.AntPathRequestMatcher'.(¼¸ö
+{
+java:S1128"eRemove this unused import 'org.springframework.web.servlet.config.annotation.ViewControllerRegistry'.(ŸÜ¨¸
+z
+java:S1128"_Remove this unused import 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer'.(’µ¥Êÿÿÿÿÿ
+Q
+java:S1128";Remove this unused import 'javax.servlet.ServletException'.(Š‰™Œ
+X
+java:S1128"BRemove this unused import 'javax.servlet.http.HttpServletRequest'.(ø©¹…
+Y
+java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë
+K
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ
+@
+java:S1068'"*Remove this unused "LOGGER" private field.(ÂÜø
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ùì×¶øÿÿÿÿ

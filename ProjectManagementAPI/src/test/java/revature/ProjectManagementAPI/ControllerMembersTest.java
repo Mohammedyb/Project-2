@@ -34,10 +34,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringRunner.class)
-//@SpringBootTest(classes = {ProjectManagementApiApplication.class})
+@SpringBootTest(classes = {ProjectManagementApiApplication.class})
 @AutoConfigureMockMvc
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ControllerMemberTest {
+public class ControllerMembersTest {
 
 
     private MockMvc mockMvc;
@@ -141,7 +140,7 @@ public class ControllerMemberTest {
                 "confirm","confirm");
 
         ResultActions response = mockMvc.perform(put("/updateprogress")
-                        .contentType(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(updateTaskProgress)));
 
         response.andExpect(status().isOk())

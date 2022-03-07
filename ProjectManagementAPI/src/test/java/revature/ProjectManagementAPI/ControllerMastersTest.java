@@ -15,7 +15,6 @@ import org.springframework.web.context.WebApplicationContext;
 import revature.ProjectManagementAPI.DAO.AssignRepository;
 import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.MasterService;
-import revature.ProjectManagementAPI.service.TeamMemberService;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProjectManagementApiApplication.class})
-public class ControllerMasterTest {
+public class ControllerMastersTest {
 
     private MockMvc mockMvc;
 
@@ -180,6 +179,4 @@ public class ControllerMasterTest {
 
         response.andDo(print()).andExpect(status().isOk());
     }
-
-
 }

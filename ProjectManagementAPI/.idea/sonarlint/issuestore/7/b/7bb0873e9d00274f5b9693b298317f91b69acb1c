@@ -1,0 +1,12 @@
+
+V
+java:S4684`"@Replace this persistent entity with a simple POJO or DTO object.(γ α
+`
+java:S4488_"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(†οψ
+V
+java:S4684o"@Replace this persistent entity with a simple POJO or DTO object.(φλύ‘
+<
+java:S1452o"&Remove usage of generic wildcard type.(φλύ‘
+d
+java:S1128"IRemove this unused import 'org.springframework.validation.BindingResult'.(‹¶Έωÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ί¥ώΫ

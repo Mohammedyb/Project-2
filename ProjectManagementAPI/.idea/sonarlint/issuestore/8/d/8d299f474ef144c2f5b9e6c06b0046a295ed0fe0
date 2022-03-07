@@ -1,0 +1,14 @@
+
+n
+java:S2387"S"logger" is the name of a field in "AbstractAuthenticationTargetUrlRequestHandler".(ªÖÚýýÿÿÿÿ
+W
+java:S3416"<Update this logger to use "OAuth2LoginSuccessHandler.class".(ªÖÚýýÿÿÿÿ
+W
+java:S3457,"AFormat specifiers should be used instead of string concatenation.(Ï™ÿ“
+M
+java:S2629,"7Use the built-in formatting to construct this argument.(Ï™ÿ“
+W
+java:S49733"<Strings and Boxed types should be compared using "equals()".(ºè›—þÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ùì×¶øÿÿÿÿ
+]
+java:S22591"BA "NullPointerException" could be thrown; "user" is nullable here.(¡„•—ùÿÿÿÿ
