@@ -40,6 +40,7 @@ public class HomePageController {
     public String displayHomePage(Model model, @AuthenticationPrincipal OAuth2User principal){
         if (principal != null){
             OAuth2User oauthUser = principal;
+            
             LOGGER.info("AuthenticationSuccessHandler invoked");
             LOGGER.info("Authentication name: " + oauthUser.getAttributes().get("name"));
             oauthUserService.processOAuthPostLogin(oauthUser.getEmail(),oauthUser.getName());
@@ -90,12 +91,12 @@ public class HomePageController {
     }
 
     public void viewAssignedMeetings(Model model, User user){
-//        List<Meeting> meetings = teamMemberService.getAllById(user.getProjects().getId());
-//        model.addAttribute("meetings", meetings);
-        /*List<String> meetingTypes = new ArrayList<>();
+        List<Meeting> meetings = teamMemberService.getAllById(user.getProjects().getId());
+        model.addAttribute("meetings", meetings);
+        List<String> meetingTypes = new ArrayList<>();
         meetingTypes.add("Daily Standup");
         meetingTypes.add("Sprint Review");
         meetingTypes.add("Sprint Planning");
-        model.addAttribute("meeting_types", meetingTypes);*/
+        model.addAttribute("meeting_types", meetingTypes);
     }
 }

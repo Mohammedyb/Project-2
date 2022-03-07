@@ -1,9 +1,11 @@
 package revature.ProjectManagementAPI;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.context.WebApplicationContext;
+import revature.ProjectManagementAPI.DAO.TaskProgressRepository;
 import revature.ProjectManagementAPI.models.AssignProject;
 import revature.ProjectManagementAPI.models.Meeting;
 import revature.ProjectManagementAPI.models.Task;
@@ -22,21 +25,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {ProjectManagementApiApplication.class})
-public class ControllerTeamMembersTest {
+@AutoConfigureMockMvc
+public class ControllerMembersTest {
+
 
     private MockMvc mockMvc;
 
@@ -45,6 +46,9 @@ public class ControllerTeamMembersTest {
 
     @MockBean
     private TeamMemberService teamMemberService;
+
+    @Autowired
+    private TaskProgressRepository taskProgressRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -127,23 +131,22 @@ public class ControllerTeamMembersTest {
                 .andExpect(jsonPath("$.size()", is(progressList.size())));
     }
 
-//    @Test
-//    public void shouldCreateProgress() throws Exception {
-//        TaskProgress taskProgress = new TaskProgress(1,1,1,
-//                "test","test");
-//        when(teamMemberService.save(any(TaskProgress.class))).thenReturn(taskProgress);
-//
-//        ResultActions response = mockMvc.perform(post("/progress")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(objectMapper.writeValueAsString(taskProgress)));
-//
-//        response.andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.id").value(taskProgress.getId()))
-//                .andExpect(jsonPath("$.assignTaskId").value(taskProgress.getAssignTaskId()))
-//                .andExpect(jsonPath("$.projectsId").value(taskProgress.getProjectsId()))
-//                .andExpect(jsonPath("$.progressStatus").value(taskProgress.getProgressStatus()))
-//                .andExpect(jsonPath("$.taskComment").value(taskProgress.getTaskComment()));
-//    }
+    @Test
+    public void shouldUpdateProgress() throws Exception {
+        Integer taskId = 1;
+        TaskProgress taskProgress = new TaskProgress(1,1,1,
+                "test","test");
+        TaskProgress updateTaskProgress = new TaskProgress(1,1,1,
+                "confirm","confirm");
 
+        ResultActions response = mockMvc.perform(put("/updateprogress")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(updateTaskProgress)));
+
+        response.andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(jsonPath("$.progressStatus", is(updateTaskProgress.getProgressStatus())))
+                .andExpect(jsonPath("$.taskComment", is(updateTaskProgress.getTaskComment())));
+
+    }
 }

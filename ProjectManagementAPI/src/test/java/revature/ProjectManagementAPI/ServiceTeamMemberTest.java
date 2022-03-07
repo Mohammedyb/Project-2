@@ -13,6 +13,7 @@ import revature.ProjectManagementAPI.service.TeamMemberService;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -110,12 +111,22 @@ class ServiceTeamMemberTest {
         assertThat(assignProjects).isNotNull();
     }
 
-//    @Test
-//    void shouldCreateTeamMember() {
-//        User user = new User(1,"email","test","name",
-//                project,new Role(2,"Team Member"),LOCAL);
-//        given(userRepository.save(user)).willReturn(user);
-//        teamMemberService.createNewTeamMemberAfterOAuthSuccess("email","name",LOCAL);
-//        assertEquals(user,teamMemberService.createNewTeamMemberAfterOAuthSuccess("email","name",LOCAL));
-//    }
+    @Test
+    void shouldUpdateProgress() {
+        Integer taskId = 1;
+        TaskProgress taskProgress = new TaskProgress(1,1,1,
+                "test","test");
+        TaskProgress updateTaskProgress = new TaskProgress(1,1,1,
+                "confirm","confirm");
+
+        given(taskProgressRepository.save(taskProgress)).willReturn(taskProgress);
+
+        taskProgress.setProgressStatus(updateTaskProgress.getProgressStatus());
+        taskProgress.setTaskComment(updateTaskProgress.getTaskComment());
+
+        taskProgressRepository.save(taskProgress);
+
+        assertThat(taskProgress.getProgressStatus()).isEqualTo("confirm");
+        assertThat(taskProgress.getTaskComment()).isEqualTo("confirm");
+    }
 }

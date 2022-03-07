@@ -168,6 +168,7 @@ public class ScrumMasterController {
          masterService.save(assignProject);
 
          //send email to team members assigned to new projects
+        // params for email are to, subject and content respectively
         ResponseEntity resp = restTemplate.postForEntity(url, assignProject, null);
 
         if(resp.getStatusCode().is5xxServerError()) {
