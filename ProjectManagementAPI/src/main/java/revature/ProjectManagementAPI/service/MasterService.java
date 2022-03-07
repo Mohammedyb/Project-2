@@ -70,6 +70,10 @@ public class MasterService {
         this.taskProgressRepository = taskProgressRepository;
     }
 
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     /**
      * Create new project
      * @param project project post the manager created
@@ -192,12 +196,10 @@ public class MasterService {
      */
     public List<TaskProgress> getAllProgress() { return taskProgressRepository.findAll(); }
 
-
     public void updateProjectManagerAfterOAuthSuccess(User user, String name, AuthenticationProvider google) {
         user.setName(name);
         user.setAuthProvider(google);
         userRepository.save(user);
     }
-
 
 }

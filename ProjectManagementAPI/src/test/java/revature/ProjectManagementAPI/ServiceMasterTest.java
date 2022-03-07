@@ -21,6 +21,8 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
+import static revature.ProjectManagementAPI.models.AuthenticationProvider.GOOGLE;
+import static revature.ProjectManagementAPI.models.AuthenticationProvider.LOCAL;
 
 @ExtendWith(MockitoExtension.class)
 public class ServiceMasterTest {
@@ -40,6 +42,12 @@ public class ServiceMasterTest {
     @Mock
     private TaskProgressRepository taskProgressRepository;
 
+    @Mock
+    private UserRepository userRepository;
+
+    @Mock
+    private MasterService masterServices;
+
     @InjectMocks
     private MasterService masterService;
 
@@ -49,13 +57,16 @@ public class ServiceMasterTest {
         assignRepository = mock(AssignRepository.class);
         meetingRepository = mock(MeetingRepository.class);
         taskRepository = mock(TaskRepository.class);
+        userRepository = mock(UserRepository.class);
         taskProgressRepository = mock(TaskProgressRepository.class);
+        masterServices = mock(MasterService.class);
         masterService = new MasterService();
         masterService.setProjectRepository(projectRepository);
         masterService.setAssignRepository(assignRepository);
         masterService.setMeetingRepository(meetingRepository);
         masterService.setTaskRepository(taskRepository);
         masterService.setTaskProgressRepository(taskProgressRepository);
+        masterService.setUserRepository(userRepository);
     }
 
     private final Project project = new Project(1,"test", 1, "test",
@@ -141,4 +152,18 @@ public class ServiceMasterTest {
         masterService.removeById(userId);
         verify(assignRepository, times(1)).deleteAssignProjectByAssignUserId(userId);
     }
+
+//    @Test
+//    void shouldUpdateManagerAfterOathSuccess() {
+//        User user = new User(1,"test","test","test",
+//                project,new Role(1,"member"),LOCAL);
+//        String name = "confirm";
+//
+//        doNothing().when(masterServices).updateProjectManagerAfterOAuthSuccess(user,name,GOOGLE);
+//        user.setName(name);
+//        user.setAuthProvider(GOOGLE);
+//        userRepository.save(user);
+//
+//        verify(masterServices, times(1)).updateProjectManagerAfterOAuthSuccess(user,name,GOOGLE);
+//    }
 }

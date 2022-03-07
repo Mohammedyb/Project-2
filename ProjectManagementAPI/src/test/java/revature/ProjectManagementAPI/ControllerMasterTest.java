@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.context.WebApplicationContext;
+import revature.ProjectManagementAPI.DAO.AssignRepository;
 import revature.ProjectManagementAPI.models.*;
 import revature.ProjectManagementAPI.service.MasterService;
 import revature.ProjectManagementAPI.service.TeamMemberService;
@@ -20,13 +21,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.System.nanoTime;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,8 +43,8 @@ public class ControllerMasterTest {
     @MockBean
     private MasterService masterService;
 
-    @MockBean
-    private TeamMemberService teamMemberService;
+    @Autowired
+    private AssignRepository assignRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -171,75 +170,16 @@ public class ControllerMasterTest {
     }
 
     @Test
-    public void shouldGetAllAssignById() throws Exception{
-        Integer userid = 1;
-        List<AssignProject> assignProjectList = new ArrayList<>();
+    public void shouldDeleteByUserId() throws Exception {
+        AssignProject assignProject = new AssignProject(1,1,"test",
+                1,"test");
+        assignRepository.save(assignProject);
 
-        AssignProject assignProject = new AssignProject(1,1,"test",1,
-                "string");
-        assignProjectList.add(assignProject);
+        ResultActions response = mockMvc.perform(delete("/master/removeassign/{id}",
+                assignProject.getAssignUserId()));
 
-        given(teamMemberService.getAssignByUserId(assignProjectList.get(0).getAssignUserId()))
-                .willReturn(assignProjectList);
-
-        ResultActions response = mockMvc.perform(get("/viewassign/{userid}", userid));
-
-        response.andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(jsonPath("$.size()", is(assignProjectList.size())));
+        response.andDo(print()).andExpect(status().isOk());
     }
 
-    @Test
-    public void shouldGetAllMeetingById() throws Exception{
-        Integer id = 1;
-        List<Meeting> meetingList = new ArrayList<>();
 
-        Meeting meeting = new Meeting(1,1,1, "test", 1.0,
-                "test", new Timestamp(System.currentTimeMillis()));
-        meetingList.add(meeting);
-
-        given(teamMemberService.getAllById(meetingList.get(0).getProjectId())).willReturn(meetingList);
-
-        ResultActions response = mockMvc.perform(get("/viewmeeting/{id}", id));
-
-        response.andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(jsonPath("$.size()", is(meetingList.size())));
-    }
-
-    @Test
-    public void shouldGetAllTaskById() throws Exception{
-        Integer userid = 1;
-        List<Task> taskList = new ArrayList<>();
-
-        Task task = new Task(1,"test","test","test","test",
-                1,1);
-        taskList.add(task);
-
-        given(teamMemberService.getAllByUserId(taskList.get(0).getUserId())).willReturn(taskList);
-
-        ResultActions response = mockMvc.perform(get("/viewtask/{userid}", userid));
-
-        response.andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(jsonPath("$.size()", is(taskList.size())));
-    }
-
-    @Test
-    public void shouldGetAllProgressById() throws Exception{
-        Integer projectId = 1;
-        List<TaskProgress> progressList = new ArrayList<>();
-
-        TaskProgress taskProgress = new TaskProgress(1,1,1,
-                "test","test");
-        progressList.add(taskProgress);
-
-        given(teamMemberService.getAllByProjectId(progressList.get(0).getProjectsId())).willReturn(progressList);
-
-        ResultActions response = mockMvc.perform(get("/viewtaskprogress/{projectid}", projectId));
-
-        response.andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(jsonPath("$.size()", is(progressList.size())));
-    }
 }
