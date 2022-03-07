@@ -1,0 +1,9 @@
+
+V	java:S125/"<This block of commented-out lines of code should be removed.(š©ìùÿÿÿÿ
+Q
+java:S1128";Remove this unused import 'org.hibernate.annotations.Type'.(ý®™Ê
+Y
+java:S1128">Remove this unused import 'org.hibernate.annotations.TypeDef'.(‰©—´þÿÿÿÿ
+F
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä¸Æ˜

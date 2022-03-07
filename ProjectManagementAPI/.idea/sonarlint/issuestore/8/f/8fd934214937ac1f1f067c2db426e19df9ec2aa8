@@ -1,0 +1,16 @@
+
+J
+java:S3416"4Update this logger to use "OAuth2UserService.class".(ÂÜø
+\
+java:S34577"AFormat specifiers should be used instead of string concatenation.(‰Œ‰Âùÿÿÿÿ
+Q	java:S125,"<This block of commented-out lines of code should be removed.(¶¶Ÿâ
+V	java:S1256"<This block of commented-out lines of code should be removed.(¨­Òáÿÿÿÿÿ
+v
+java:S1128"[Remove this unused import 'revature.ProjectManagementAPI.Controller.ScrumMasterController'.(šœç©şÿÿÿÿ
+a
+java:S1128"FRemove this unused import 'revature.ProjectManagementAPI.models.Role'.(¢¹Àıÿÿÿÿ
+R
+java:S26297"7Use the built-in formatting to construct this argument.(‰Œ‰Âùÿÿÿÿ
+W
+java:S4973>"<Strings and Boxed types should be compared using "equals()".(ºè›—şÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ùì×¶øÿÿÿÿ

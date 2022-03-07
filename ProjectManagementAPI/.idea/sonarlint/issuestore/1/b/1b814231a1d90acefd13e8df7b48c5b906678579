@@ -1,0 +1,22 @@
+
+J
+java:S3740_"/Provide the parametrized type for this generic.(æÙ¥íÿÿÿÿÿ
+K
+java:S3740«"/Provide the parametrized type for this generic.(ğìç²úÿÿÿÿ
+[
+java:S46845"@Replace this persistent entity with a simple POJO or DTO object.(ı—ÖÈúÿÿÿÿ
+V
+java:S4684F"@Replace this persistent entity with a simple POJO or DTO object.(‚Î·
+[
+java:S4684["@Replace this persistent entity with a simple POJO or DTO object.(ùÌÄÉÿÿÿÿÿ
+A
+java:S1452["&Remove usage of generic wildcard type.(ùÌÄÉÿÿÿÿÿ
+W
+java:S4684¦"@Replace this persistent entity with a simple POJO or DTO object.(ëøÍ¿
+=
+java:S1452¦"&Remove usage of generic wildcard type.(ëøÍ¿
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ß¥şÛ
+°
+java:S4449«"“Annotate the parameter with @javax.annotation.Nullable in method 'postForEntity' declaration, or make sure that null can not be passed as argument.(ğìç²úÿÿÿÿ
+¯
+java:S4449_"“Annotate the parameter with @javax.annotation.Nullable in method 'postForEntity' declaration, or make sure that null can not be passed as argument.(æÙ¥íÿÿÿÿÿ
