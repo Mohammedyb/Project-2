@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import revature.ProjectManagementAPI.DAO.ProjectRepository;
 import revature.ProjectManagementAPI.DAO.UserRepository;
 import revature.ProjectManagementAPI.models.Meeting;
+import revature.ProjectManagementAPI.models.NewMeetingDTO;
 import revature.ProjectManagementAPI.models.Project;
 
 import java.io.FileNotFoundException;
@@ -36,7 +37,7 @@ import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service @Slf4j
@@ -193,7 +194,7 @@ public class EmailService {
      * @throws GeneralSecurityException
      * @throws IOException
      */
-    public String createMeeting(Meeting meeting) throws GeneralSecurityException, IOException {
+    public String createMeeting(NewMeetingDTO meeting) throws GeneralSecurityException, IOException {
         Project project = projectRepository.getById(meeting.getProjectId());
         log.info("Creating a meeting for the project {}", project.getName());
         log.info("Requesting authorization from google to create new event");
@@ -228,7 +229,7 @@ public class EmailService {
         String token = CharStreams.toString(new InputStreamReader(tokenResponse.getContent(), Charsets.UTF_8)); */
 
         // ==== Setting the date/length ====
-        DateTime startDate = new DateTime(meeting.getTimestamp().getTime());
+        DateTime startDate = meeting.getStartDate();
         EventDateTime start = new EventDateTime().setDateTime(startDate);
         if(meeting.getMeetingLength() == 0) { //Trying to check for null - if it is null, set it to the default of 1.5 hours
             meeting.setMeetingLength(1.5);
@@ -238,7 +239,7 @@ public class EmailService {
 
         // ==== Setting the recurrence ====
         // the default below is to be a weekly event - work with Kramer to figure out how they'll input their recurrence rules
-        String[] recurrence = new String[] {"RRULE:FREQ=WEEKLY;"};
+        String[] recurrence = new String[] {"RRULE:FREQ=" + meeting.getFreq() + ";"};
 
         // ==== Setting the attendees ====//meeting.getAttendees().toArray(new String[0]);
         EventAttendee[] attendees = new EventAttendee[] {
