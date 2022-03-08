@@ -38,10 +38,6 @@ kind: Ingress
 metadata:
   name: pm-ingress
 spec:
-  tls:
-    - hosts:
-        - marathon.api.com
-      secretName: pm-secret
   rules:
     - host: marathon.api.com
       http:
