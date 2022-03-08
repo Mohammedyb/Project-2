@@ -35,6 +35,8 @@ spec:
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
+annotations:
+  cloud.google.com/neg: '{"ingress": true}'
 metadata:
   name: pm-ingress
 spec:
