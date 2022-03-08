@@ -32,22 +32,18 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
-
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: pmcontroller
+  name: api-ingress
 spec:
-  rules:
-   host: ub.kar.int
-  http:
-  paths:
-   path: /master(/|$)(.*)
-  backend:
-   service:
+  path: /master(/|$)(.*)
+defaultBackend:
+  service:
     name: pm-service
-    port: 8080
+     port:
+     number: 8080
 
 ---
 apiVersion: v1
