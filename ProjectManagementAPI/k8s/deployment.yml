@@ -33,7 +33,7 @@ spec:
     - port: 8080
       targetPort: 8080
 ---
-apiVersion:
+apiVersion: v1
 kind: Ingress
 metadata:
   name: api-ingress
