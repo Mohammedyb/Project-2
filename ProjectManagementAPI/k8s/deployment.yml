@@ -44,11 +44,11 @@ spec:
         paths:
           - path: /master
             pathType: Prefix
-            defautBackend:
+            Backend:
               service:
                 name: pm-service
                 port:
-                  number: 8080
+                  number: 80
 #          - path: /
 #            pathType: Prefix
 #            backend:
