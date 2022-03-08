@@ -242,9 +242,10 @@ public class EmailService {
         String[] recurrence = new String[] {"RRULE:FREQ=" + meeting.getFreq() + ";"};
 
         // ==== Setting the attendees ====//meeting.getAttendees().toArray(new String[0]);
+        String projectManagerEmail = project.getProjectManager();
         EventAttendee[] attendees = new EventAttendee[] {
                 new EventAttendee().setEmail("project02sender@gmail.com"),
-                new EventAttendee().setEmail(userRepository.getUserById(projectRepository.getProjectById(meeting.getProjectId()).getProjectManagerId()).getEmail())
+                new EventAttendee().setEmail(projectManagerEmail)
         };
 
         // ==== Setting the reminders ====
