@@ -94,7 +94,7 @@ pipeline {
             discordSend description: "Build #$currentBuild.number",
                 link: BUILD_URL, result: currentBuild.currentResult,
                 title: JOB_NAME,
-                webhookURL: "https://discord.com/api/webhooks/949894222595629067/-xHBAWXS4RaovxJg6ubE674itYLVy57PEzCtMQq1aU1-6P8dTIsqzhhqRMWWSzUI_LMc"
+                webhookURL: "https://discord.com/api/webhooks/950551774383714334/2pFxfoFUsi0Q2By8oZpKr72FQUZjGcOn1CfDCSVKSYytylCGz8ws4zhAHrBorEvcc9YG"
             }
         }
     }
