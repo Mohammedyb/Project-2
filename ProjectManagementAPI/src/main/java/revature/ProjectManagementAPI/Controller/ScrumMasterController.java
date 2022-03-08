@@ -53,11 +53,11 @@ public class ScrumMasterController {
     public Project createNewProject(@RequestBody Project project) {
         return masterService.newProject(project);
     }
-    /**
+
     @PostMapping(value = "/new/google", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Project createNewProjectWithEvent(@RequestBody Project project) {
         return masterService.newProjectWithGoogle(project);
-    } */
+    }
 
     /**
      * Create new meeting

@@ -30,7 +30,7 @@ public class MasterService {
 
     private TaskProgressRepository taskProgressRepository;
 
-    //private EmailService emailService;
+    private EmailService emailService;
 
     private UserRepository userRepository;
 
@@ -40,13 +40,13 @@ public class MasterService {
 
     @Autowired
     public MasterService(ProjectRepository projectRepository, AssignRepository assignRepository, MeetingRepository meetingRepository,
-                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository, /*EmailService emailService, */UserRepository userRepository) {
+                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository, EmailService emailService, UserRepository userRepository) {
         this.projectRepository = projectRepository;
         this.assignRepository = assignRepository;
         this.meetingRepository = meetingRepository;
         this.taskRepository = taskRepository;
         this.taskProgressRepository = taskProgressRepository;
-        //this.emailService = emailService;
+        this.emailService = emailService;
         this.userRepository = userRepository;
     }
 
@@ -88,9 +88,9 @@ public class MasterService {
      * Creates a new project and additionally initializes the calendar for that project
      * @param project project post the manager created
      * @return new project with project name, assigned manager, manager id, project description and deadline
-
+    */
     public Project newProjectWithGoogle(Project project) {
-        /*Create the projects calendar
+        //Create the projects calendar
         try {
             project.setMeetingCalendarId(emailService.createCalendar(project));
         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class MasterService {
         }
         return projectRepository.save(project);
     }
-    */
+
 
     /**
      * Get all project created
@@ -134,7 +134,7 @@ public class MasterService {
      * Creates a new meeting, and additionally adds it to the relevant project calendar
      * @param meeting meeting post the manager created
      * @return new meeting post with project id, meeting date, meeting time and meeting type
-
+    */
     public Meeting createMeetingWithGoogle(Meeting meeting) {
         log.info("Creating meeting with google calendar meeting: {}", meeting);
         try {
@@ -146,7 +146,7 @@ public class MasterService {
         }
         return meetingRepository.save(meeting);
     }
-    */
+
     /**
      * Create new task
      *
