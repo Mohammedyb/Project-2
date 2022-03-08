@@ -13,6 +13,7 @@ pipeline {
             }
         steps {
             withMaven {
+                cleanWs()
                 sh 'mvn test'
             }
         }
