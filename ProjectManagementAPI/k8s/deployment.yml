@@ -36,14 +36,30 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: api-ingress
+  name: pm-ingress
 spec:
-  path: /master(/|$)(.*)
-defaultBackend:
-  service:
-    name: pm-service
-    port: 8080
-
+  tls:
+    - hosts:
+        - marathon.api.com
+      secretName: pm-secret
+  rules:
+    - host: marathon.api.com
+      http:
+        paths:
+          - path: /master
+            pathType: Prefix
+            backend:
+              service:
+                name: master-svc
+                port:
+                  number: 80
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: coffee-svc
+#                port:
+#                  number: 80
 ---
 apiVersion: v1
 kind: Service
