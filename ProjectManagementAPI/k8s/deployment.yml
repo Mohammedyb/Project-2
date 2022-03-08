@@ -38,38 +38,8 @@ kind: Ingress
 metadata:
   name: pm-ingress
 spec:
-  tls:
-    - hosts:
-        - marathon.api.com
-      secretName: pm-secret
-  rules:
-    - host: marathon.api.com
-      http:
-        paths:
-          - path: /master
-            pathType: Prefix
-            backend:
-              service:
-                name: pm-service
-                port:
-                  number: 8080
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: coffee-svc
-#                port:
-#                  number: 80
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: pm-service
-#spec:
-#  selector:
-#    app: project-management-api
-#  ports:
-#    - port: 8080
-#      targetPort: 8080
-#  externalTrafficPolicy: Local
-#  type: LoadBalancer
+  defaultBackend:
+    service:
+      name: pm-service
+      port:
+        number: 8080
