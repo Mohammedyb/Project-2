@@ -14,4 +14,5 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     List<Project> getAllById(Integer userId);
     Project getProjectById(Integer id);
     Project getProjectByName(String name);
+    Project getById(Integer assignProjId);
 }

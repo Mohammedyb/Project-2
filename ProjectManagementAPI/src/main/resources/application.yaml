@@ -1,4 +1,7 @@
-
+server:
+  servlet:
+    session:
+      persistent: false
 management:
   endpoints:
     web:
