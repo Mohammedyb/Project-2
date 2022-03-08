@@ -49,8 +49,6 @@ spec:
           - path: /master
             pathType: Prefix
             backend:
-              service:
-                name: pm-service
                 port:
                   number: 8080
 #          - path: /
