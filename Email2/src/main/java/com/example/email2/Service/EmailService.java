@@ -15,13 +15,14 @@ import java.io.UnsupportedEncodingException;
 
 @Service("mailService")
 public class EmailService {
-    private JavaMailSenderImpl emailSender;
+
+    private JavaMailSender emailSender;
 
     public EmailService() {
     }
 
     @Autowired
-    public EmailService(JavaMailSenderImpl javaMailSender) {
+    public EmailService(JavaMailSender javaMailSender) {
         this.emailSender = javaMailSender;
     }
 
@@ -46,14 +47,4 @@ public class EmailService {
         }
     }
 
-    public void sendSimpleMessage(String to, String subject, String text) {
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@gmail.com");
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        emailSender.send(message);
-
-    }
 }
