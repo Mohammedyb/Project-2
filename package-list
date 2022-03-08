@@ -1,0 +1,7 @@
+revature.ProjectManagementAPI
+revature.ProjectManagementAPI.Controller
+revature.ProjectManagementAPI.DAO
+revature.ProjectManagementAPI.models
+revature.ProjectManagementAPI.security.oauth
+revature.ProjectManagementAPI.service
+revature.ProjectManagementAPI.views
