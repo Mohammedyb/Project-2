@@ -38,10 +38,7 @@ kind: Ingress
 metadata:
   name: api-ingress
 spec:
-  rules:
-    - http:
-      paths:
-        path: /master(/|$)(.*)
+  path: /master(/|$)(.*)
   defaultBackend:
     service:
       name: demo-service
