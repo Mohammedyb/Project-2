@@ -49,8 +49,8 @@ spec:
           - path: /master
             pathType: Prefix
             backend:
-                port:
-                  number: 8080
+                ports:
+                  port: 8080
 #          - path: /
 #            pathType: Prefix
 #            backend:
