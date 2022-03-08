@@ -38,13 +38,11 @@ kind: Ingress
 metadata:
   name: pm-ingress
 spec:
-  rules:
-    - host: marathon.api.com
-            backend:
-              service:
-                name: pm-service
-                port:
-                  number: 8080
+  defaultBackend:
+    service:
+      name: pm-service
+      port:
+        number: 8080
 #          - path: /
 #            pathType: Prefix
 #            backend:
