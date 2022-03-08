@@ -44,10 +44,10 @@ annotations:
   nginx.ingress.kubernetes.io/configuration-snippet: |
 spec:
   rules:
- - host: ub.kar.int
+   host: ub.kar.int
      http:
       paths:
-      - path: /master(/|$)(.*)
+        path: /master(/|$)(.*)
       backend:
         serviceName: jenkins
         servicePort: 8080
