@@ -45,12 +45,12 @@ annotations:
 spec:
   rules:
    host: ub.kar.int
-     http:
-      paths:
-        path: /master(/|$)(.*)
-      backend:
-        serviceName: pm-service
-        servicePort: 8080
+  http:
+  paths:
+   path: /master(/|$)(.*)
+  backend:
+   serviceName: pm-service
+   servicePort: 8080
 
 ---
 apiVersion: v1
