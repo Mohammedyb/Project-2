@@ -261,7 +261,7 @@
                             <input type="text" th:field="*{taskComment}" class="text-color-blk form-control mb-2"/>
                                 <tr>
                                     <td>Project ID:</td>
-                                    <td><input type="number" th:field="*{projectsId}" /></td>
+                                    <td><input type="number" th:field="*{projectsId}" class="text-color-blk form-control mb-2"/></td>
                                 </tr>
                             <input type="submit" value="Submit" class="btn btn-primary" />
                             </table>
@@ -277,31 +277,16 @@
                             <span th:case="'2'" th:text="'Sprint Review'"/>
                             <span th:case="'3'" th:text="'Daily Standup'"/>
                         </p>
-                        <p th:text="${meeting.timestamp}"> Meeting-Length: </p>
+                        Date/Time:
+                        <p th:text="${meeting.timestamp}"> </p>
                         <p th:text="${meeting.meetingLength}"> Meeting-Length: </p>
+                        <form action="#" th:action="@{/createCalEvent}" th:object="${meeting}" method="post">
+                            <input type="submit" value="Add to Calendar" class="btn btn-primary" />
+                        </form>
                     </tr>
                 </div>
         </div>
     </div>
-<!--        <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">-->
-<!--            <table border="1">-->
-<!--                <tr>-->
-<!--                    <td>Progress Status:</td>-->
-<!--                    <td><input type="text" th:field="*{progressStatus}" /></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>Comment:</td>-->
-<!--                    <td><input type="text" th:field="*{taskComment}" /></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>Project ID:</td>-->
-<!--                    <td><input type="number" th:field="*{projectsId}" /></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><input type="submit" value="Submit" /></td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--        </form>-->
 
     </div>
     <footer class="border-top footer text-light nav-bg">

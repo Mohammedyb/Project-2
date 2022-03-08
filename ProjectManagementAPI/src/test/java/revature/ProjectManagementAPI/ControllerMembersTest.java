@@ -82,7 +82,7 @@ public class ControllerMembersTest {
         Integer id = 1;
         List<Meeting> meetingList = new ArrayList<>();
 
-        Meeting meeting = new Meeting(1, 1, new Timestamp(System.currentTimeMillis()), 1, "meeting", "GOOGLE", 1.5, "NONE");
+        Meeting meeting = new Meeting(1, 1, new Timestamp(System.currentTimeMillis()), 1, "meeting", 1.5, "NONE");
         meetingList.add(meeting);
 
         given(teamMemberService.getAllById(meetingList.get(0).getProjectId())).willReturn(meetingList);

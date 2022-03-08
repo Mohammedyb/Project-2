@@ -35,8 +35,8 @@ public class Meeting {
     @Column(name = "meeting_calendar_id")
     private String meetingCalendarId;
 
-    @Column(name = "auth_provider")
-    private String authProvider;
+    /*@Column(name = "auth_provider")
+    private String authProvider;*/
 
     @Column(name = "meeting_length")
     private double meetingLength;

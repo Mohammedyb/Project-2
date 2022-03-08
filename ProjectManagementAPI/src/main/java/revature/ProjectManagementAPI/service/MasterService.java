@@ -126,11 +126,11 @@ public class MasterService {
         createdMeeting.setMeetingLength(meeting.getMeetingLength());
 
         createdMeeting.setMeetingCalendarId("primary");
-        createdMeeting.setAuthProvider("GOOGLE");
+        //createdMeeting.setAuthProvider("GOOGLE");
         createdMeeting.setProjectId(meeting.getProjectId());
         createdMeeting.setTimestamp(new Timestamp(meeting.getStartDate().getValue()));
         try {
-            createdMeeting.setMeetingLink(emailService.createMeeting(meeting));
+            //createdMeeting.setMeetingLink(emailService.createMeeting(meeting));
             meetingRepository.save(createdMeeting);
         } catch (Exception e) {
             log.error("ERROR trying to create new google meeting - proceeding without google event: " + e.getMessage());

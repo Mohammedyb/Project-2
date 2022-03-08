@@ -1,5 +1,6 @@
 package revature.ProjectManagementAPI.security.oauth;
 
+import com.google.api.client.util.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,15 @@ public class HomePageController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectManagementApiApplication.class);
 
+    public NewMeetingDTO getMeetingDTO() {
+        return meetingDTO;
+    }
+
+    public void setMeetingDTO(NewMeetingDTO meetingDTO) {
+        this.meetingDTO = meetingDTO;
+    }
+
+    NewMeetingDTO meetingDTO;
     public HomePageController(){
 
     }
@@ -102,6 +112,20 @@ public class HomePageController {
         if (teamMemberService.getAllById(user.getProjects().getId()) != null)
         {
             List<Meeting> meetings = teamMemberService.getAllById(user.getProjects().getId());
+            //datetime startdate, double meeting length, string freq
+            String name = "null";
+            switch (meetings.get(0).getMeetingType())
+            {
+                case 1: name = "Daily Standup";
+                        break;
+                case 2: name = "Sprint Review";
+                        break;
+                case 3: name = "Sprint Planning";
+                        break;
+                default: name = "null";
+                        break;
+            }
+            meetingDTO = new NewMeetingDTO(user.getProjects().getId(),name,new DateTime(meetings.get(0).getTimestamp().getTime()),meetings.get(0).getMeetingLength(), "DAILY");
             model.addAttribute("meetings", meetings);
             List<String> meetingTypes = new ArrayList<>();
             meetingTypes.add("Daily Standup");
@@ -110,4 +134,6 @@ public class HomePageController {
             model.addAttribute("meeting_types", meetingTypes);
         }
     }
+
+
 }

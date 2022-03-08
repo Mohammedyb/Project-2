@@ -13,10 +13,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import revature.ProjectManagementAPI.models.*;
+import revature.ProjectManagementAPI.security.oauth.HomePageController;
+import revature.ProjectManagementAPI.service.EmailService;
 import revature.ProjectManagementAPI.service.TeamMemberService;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +40,10 @@ public class TeamMembersController {
     @Autowired
     private RestTemplate restTemplate;
     private final TeamMemberService teamMemberService;
+    @Autowired
+    EmailService emailService;
+    @Autowired
+    HomePageController homePageController;
     private static final Logger LOGGER = LoggerFactory.getLogger(TeamMembersController.class);
 
     @Autowired
@@ -91,6 +99,23 @@ public class TeamMembersController {
             "projectid") Integer projectId) {
         LOGGER.info("Team Member is viewing their task progress by project id.");
         return new ResponseEntity<>(teamMemberService.getAllByProjectId(projectId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/createCalEvent", method = RequestMethod.POST)
+    public String createCalEvent(@ModelAttribute("meetings")Meeting meeting) throws GeneralSecurityException, IOException {
+        //get dto from home controller
+        List<String> emailInfo = new ArrayList<>();
+        emailInfo.add(teamMemberService.getActiveUser().getEmail());
+        emailInfo.add("Calendar Event Created");
+        emailInfo.add("Here is the link to your event: " + emailService.createMeeting(homePageController.getMeetingDTO(), teamMemberService.getActiveUser().getEmail()));
+        ResponseEntity resp = restTemplate.postForEntity(url, emailInfo, null);
+        if(resp.getStatusCode().is5xxServerError()) {
+            ResponseEntity.internalServerError().build();
+        }
+        else{
+            ResponseEntity.noContent().build();
+        }
+        return  "redirect:/home";
     }
 
     /**

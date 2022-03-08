@@ -120,3 +120,4 @@ SET project_id=1, meeting_type=1, meeting_calendar_id='NONE', meeting_length=1.5
 WHERE id=1;
 
 
+

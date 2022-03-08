@@ -130,7 +130,7 @@ public class EmailService {
     public String updateMeeting(String calID, String meetingID, Meeting newMeeting, String recurrence) {
         String token = "";
         try {
-            token = refreshAccessToken(userRepository.getUserByEmail(projectRepository.getProjectByName(calID).getProjectManager()).getRefreshToken(), "https://www.googleapis.com/auth/calendar");
+            //token = refreshAccessToken(userRepository.getUserByEmail(projectRepository.getProjectByName(calID).getProjectManager()).getRefreshToken(), "https://www.googleapis.com/auth/calendar");
         } catch(Exception e){
             log.error("Project manager for project " + calID + "did not have a refresh token - setting one.");
 
@@ -194,7 +194,7 @@ public class EmailService {
      * @throws GeneralSecurityException
      * @throws IOException
      */
-    public String createMeeting(NewMeetingDTO meeting) throws GeneralSecurityException, IOException {
+    public String createMeeting(NewMeetingDTO meeting, String userEmail) throws GeneralSecurityException, IOException {
         Project project = projectRepository.getById(meeting.getProjectId());
         log.info("Creating a meeting for the project {}", project.getName());
         log.info("Requesting authorization from google to create new event");
@@ -231,21 +231,22 @@ public class EmailService {
         // ==== Setting the date/length ====
         DateTime startDate = meeting.getStartDate();
         EventDateTime start = new EventDateTime().setDateTime(startDate);
+        start.setTimeZone("America/New_York");
         if(meeting.getMeetingLength() == 0) { //Trying to check for null - if it is null, set it to the default of 1.5 hours
             meeting.setMeetingLength(1.5);
         }
         DateTime endDate = new DateTime(startDate.getValue()+ 3600000L * Double.valueOf(meeting.getMeetingLength()).longValue());
         EventDateTime end = new EventDateTime().setDateTime(endDate);
-
+        end.setTimeZone("America/New_York");
         // ==== Setting the recurrence ====
         // the default below is to be a weekly event - work with Kramer to figure out how they'll input their recurrence rules
         String[] recurrence = new String[] {"RRULE:FREQ=" + meeting.getFreq() + ";"};
 
         // ==== Setting the attendees ====//meeting.getAttendees().toArray(new String[0]);
-        String projectManagerEmail = project.getProjectManager();
+
         EventAttendee[] attendees = new EventAttendee[] {
                 new EventAttendee().setEmail("project02sender@gmail.com"),
-                new EventAttendee().setEmail(projectManagerEmail)
+                new EventAttendee().setEmail(userEmail)
         };
 
         // ==== Setting the reminders ====
