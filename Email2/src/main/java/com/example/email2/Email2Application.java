@@ -12,7 +12,7 @@ import java.util.Properties;
 public class Email2Application {
     public static final String HOST_NAME = "smtp.gmail.com";
     public static final Integer PORT = 587;
-    public static final String USERNAME = "emailapi302@gmail.com";
+    public static final String USERNAME = "project02sender@gmail.com";
     public static final String PASSWORD = "revature123";
     public static final String PROTOCOL = "mail.transport.protocol";
     public static final String SMTP = "smtp";
