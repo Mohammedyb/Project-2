@@ -44,7 +44,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: 'false'
 spec:
   rules:
-    - http: marathon.com
+    - http:
         paths:
           - path: /master(/|$)(.*)
             backend:
