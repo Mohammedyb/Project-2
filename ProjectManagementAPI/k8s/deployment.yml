@@ -38,19 +38,19 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: pmcontroller
-    annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: "/master"
-      nginx.ingress.kubernetes.io/ssl-redirect: "false"
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-  spec:
-    rules:
-      - host: ub.kar.int
-        http:
-          paths:
-            - path: /master(/|$)(.*)
-              backend:
-                serviceName: jenkins
-                servicePort: 8080
+annotations:
+  nginx.ingress.kubernetes.io/rewrite-target: "/master"
+  nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  nginx.ingress.kubernetes.io/configuration-snippet: |
+spec:
+  rules:
+ - host: ub.kar.int
+     http:
+      paths:
+      - path: /master(/|$)(.*)
+      backend:
+        serviceName: jenkins
+        servicePort: 8080
 
 ---
 apiVersion: v1
