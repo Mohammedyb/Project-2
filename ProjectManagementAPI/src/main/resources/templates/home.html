@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -230,11 +230,11 @@
                     </thead>
                     <tbody>
                         <td th:each="project: ${projects}" class="p-2 table-grid"/>
-                        <td th:text="${project.name}" class="p-2 table-grid"/>
-                        <td th:text="${project.projectManager}" class="p-2 table-grid"/>
-                        <td th:text="${project.id}" class="p-2 table-grid"/>
-                        <td th:text="${project.projectDescription}" class="p-2"/>
-                        <td th:text="${project.deadline}" class="p-2"/>
+                            <td th:text="${project.name}" class="p-2 table-grid"/>
+                            <td th:text="${project.projectManager}" class="p-2 table-grid"/>
+                            <td th:text="${project.id}" class="p-2 table-grid"/>
+                            <td th:text="${project.projectDescription}" class="p-2"/>
+                            <td th:text="${project.deadline}" class="p-2"/>
                     </tbody>
                 </table>
                 <div>

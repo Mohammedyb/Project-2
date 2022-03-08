@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -230,116 +230,95 @@
                     </thead>
                     <tbody>
                         <td th:each="project: ${projects}" class="p-2 table-grid"/>
-<!--                        <td class="table-grid">Project Alpha</td>-->
-                        <td th:text="${project.name}" class="p-2 table-grid"/>
-<!--                        <td class="table-grid">Christian Hall</td>-->
-                        <td th:text="${project.projectManager}" class="p-2 table-grid"/>
-<!--                        <td class="table-grid">1</td>-->
-                        <td th:text="${project.id}" class="p-2 table-grid"/>
-<!--                        <td class="table-grid">This is a project to exchange crypto currencies with real world currencies</td>-->
-                        <td th:text="${project.projectDescription}" class="p-2"/>
-<!--                        <td class="table-grid">June 21st, 2022</td>-->
-                        <td th:text="${project.deadline}" class="p-2"/>
+                            <td th:text="${project.name}" class="p-2 table-grid"/>
+                            <td th:text="${project.projectManager}" class="p-2 table-grid"/>
+                            <td th:text="${project.id}" class="p-2 table-grid"/>
+                            <td th:text="${project.projectDescription}" class="p-2"/>
+                            <td th:text="${project.deadline}" class="p-2"/>
                     </tbody>
                 </table>
                 <div>
                     <h3 class="text-center">Tasks</h3>
                     <div class="bg-black-2 p-2 col-sm-3 float-left">
                         <p th:each="task: ${tasks}">
-<!--                        <p>Task Name: Style the home page</p>-->
-                                                <td th:text="${task.name}"/>
-<!--                        <p>Description: Put all elements into a centered div type container with an appropriate color scheme</p>-->
-                                                <td th:text="${task.description}"/>
-<!--                        <p> Due Date: Monday, 3/7/2022</p>-->
-                                                <td th:text="${task.dueDate}"/>
-<!--                        <p> Due Time: 11:59pm</p>-->
-                                                <td th:text="${task.dueTime}"/>
+                            <p th:text="${task.name}"/>
+                            <p th:text="${task.description}"/>
+                            <p th:text="${task.dueDate}"/>
+                            <p th:text="${task.dueTime}"/>
                         <hr>
                         <h4 class="text-center">Task Progress</h4>
                         <p th:each="taskProg: ${taskProgress}">
-<!--                        <p>Status: Finished</p>-->
-                                    <p th:text="${taskProg.progressStatus}"/>
-<!--                        <p>Comment: Commit and push to github</p>-->
-                                    <p th:text="${taskProg.taskComment}"/>
+                            <p th:text="${taskProg.progressStatus}"/>
+                            <p th:text="${taskProg.taskComment}"/>
                         <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">
                             <label>Progress Status:</label>
                             <input type="text" th:field="*{progressStatus}" class="text-color-blk form-control mb-2" />
 
                             <label>Comment:</label>
                             <input type="text" th:field="*{taskComment}" class="text-color-blk form-control mb-2"/>
-<!--                                <tr>-->
-<!--                                    <td>Project ID:</td>-->
-<!--                                    <td><input type="number" th:field="*{projectsId}" /></td>-->
-<!--                                </tr>-->
+                                <tr>
+                                    <td>Project ID:</td>
+                                    <td><input type="number" th:field="*{projectsId}" /></td>
+                                </tr>
                             <input type="submit" value="Submit" class="btn btn-primary" />
                             </table>
                         </form>
                     </div>
                     <div class="bg-black-2 p-2 col-sm-3 task-left-space">
                         <p th:each="task: ${tasks}">
-<!--                        <p>Task Name: Style the Index page</p>-->
-                                                <td th:text="${task.name}"/>
-<!--                        <p>Description: Put all elements like Home page, but with the log in this time</p>-->
-                                                <td th:text="${task.description}"/>
-<!--                        <p> Due Date: Monday, 3/7/2022</p>-->
-                                                <td th:text="${task.dueDate}"/>
-<!--                        <p> Due Time: 11:59pm</p>-->
-                                                <td th:text="${task.dueTime}"/>
+                            <td th:text="${task.name}"/>
+                            <td th:text="${task.description}"/>
+                            <td th:text="${task.dueDate}"/>
+                            <td th:text="${task.dueTime}"/>
                         <hr>
                         <h4 class="text-center">Task Progress</h4>
                         <p th:each="taskProg: ${taskProgress}">
-<!--                        <p>Status: Just started</p>-->
-                                    <p th:text="${taskProg.progressStatus}"/>
-<!--                        <p>Comment: Looking up documentation</p>-->
-                                    <p th:text="${taskProg.taskComment}"/>
+                            <p th:text="${taskProg.progressStatus}"/>
+                            <p th:text="${taskProg.taskComment}"/>
                         <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">
                             <label>Progress Status:</label>
                             <input type="text" th:field="*{progressStatus}" class="text-color-blk form-control mb-2" />
 
                             <label>Comment:</label>
                             <input type="text" th:field="*{taskComment}" class="text-color-blk form-control mb-2"/>
-                                                            <tr>
-                                                                <td>Project ID:</td>
-                                                                <td><input type="number" th:field="*{projectsId}" /></td>
-                                                            </tr>
+                                <tr>
+                                    <td>Project ID:</td>
+                                    <td><input type="number" th:field="*{projectsId}" /></td>
+                                </tr>
                             <input type="submit" value="Submit" class="btn btn-primary" />
                             </table>
                         </form>
                     </div>
+
                     <div class="bg-black-2 p-2 col-sm-3 float-right">
                         <p th:each="task: ${tasks}">
-<!--                        <p>Task Name: Style the Logout page</p>-->
-                                                <td th:text="${task.name}"/>
-<!--                        <p>Description: just simple CSS</p>-->
-                                                <td th:text="${task.description}"/>
-<!--                        <p> Due Date: Monday, 3/7/2022</p>-->
-                                                <td th:text="${task.dueDate}"/>
-<!--                        <p> Due Time: 11:59pm</p>-->
-                                                <td th:text="${task.dueTime}"/>
+                            <p th:text="${task.name}"/>
+                            <p th:text="${task.description}"/>
+                            <p th:text="${task.dueDate}"/>
+                            <p th:text="${task.dueTime}"/>
                         <hr>
                         <h4 class="text-center">Task Progress</h4>
                         <p th:each="taskProg: ${taskProgress}">
-<!--                        <p>Status: making progress</p>-->
-                                    <p th:text="${taskProg.progressStatus}"/>
-<!--                        <p>Comment: Hit a little road block, but working through it</p>-->
-                                    <p th:text="${taskProg.taskComment}"/>
+                            <p th:text="${taskProg.progressStatus}"/>
+                            <p th:text="${taskProg.taskComment}"/>
+
                         <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">
                             <label>Progress Status:</label>
                             <input type="text" th:field="*{progressStatus}" class="text-color-blk form-control mb-2" />
 
                             <label>Comment:</label>
                             <input type="text" th:field="*{taskComment}" class="text-color-blk form-control mb-2"/>
-                                                            <tr>
-                                                                <td>Project ID:</td>
-                                                                <td><input type="number" th:field="*{projectsId}" /></td>
-                                                            </tr>
+                                <tr>
+                                    <td>Project ID:</td>
+                                    <td><input type="number" th:field="*{projectsId}" /></td>
+                                </tr>
                             <input type="submit" value="Submit" class="btn btn-primary" />
                             </table>
                         </form>
                     </div>
+
                 </div>
             </div>
-
             <h3 class="text-center">Meetings</h3>
                 <div class="bg-black-2 p-2">
                     <p th:each="meeting: ${meetings}">
@@ -349,7 +328,6 @@
                         <span th:case="'6'" th:text="'Daily Standup'"/>
                     </p>
                 </div>
-
         </div>
     </div>
 

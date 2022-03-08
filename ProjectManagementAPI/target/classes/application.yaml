@@ -1,4 +1,7 @@
-
+server:
+  servlet:
+    session:
+      persistent: false
 management:
   endpoints:
     web:
@@ -10,8 +13,8 @@ spring:
     name: ProjectManagementAPI
   datasource:
     username: postgres
-    password: root
-    url: jdbc:postgresql://35.230.43.68:5432/postgres
+    password: p0stgr3sPassword!
+    url: jdbc:postgresql://34.121.6.186:5432/postgres
     driver-class-name: org.postgresql.Driver
     jpa:
       properties:

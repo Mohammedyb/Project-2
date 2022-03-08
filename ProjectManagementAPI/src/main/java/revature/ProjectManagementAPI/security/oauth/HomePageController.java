@@ -21,20 +21,28 @@ import java.util.List;
 
 @Controller
 public class HomePageController {
-    @Autowired
     UserRepository userRepository;
-    @Autowired
     ProjectRepository projectRepository;
-    @Autowired
     TeamMemberService teamMemberService;
-    @Autowired
     OAuth2UserService oauthUserService;
-    @Autowired
     MeetingRepository meetingRepository;
-    @Autowired
     TaskProgressRepository taskProgressRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectManagementApiApplication.class);
+
+    public HomePageController(){
+
+    }
+
+    @Autowired
+    public HomePageController(UserRepository userRepository, ProjectRepository projectRepository, TeamMemberService teamMemberService, OAuth2UserService oauthUserService, MeetingRepository meetingRepository, TaskProgressRepository taskProgressRepository) {
+        this.userRepository = userRepository;
+        this.projectRepository = projectRepository;
+        this.teamMemberService = teamMemberService;
+        this.oauthUserService = oauthUserService;
+        this.meetingRepository = meetingRepository;
+        this.taskProgressRepository = taskProgressRepository;
+    }
 
     @GetMapping("/home")
     public String displayHomePage(Model model, @AuthenticationPrincipal OAuth2User principal){
@@ -76,9 +84,8 @@ public class HomePageController {
     public void viewAssignedProjects(Model model, User user) {
         List<AssignProject> assignProjects = teamMemberService.getAssignByUserId(user.getId());
         List<Project> projectList = new ArrayList<>();
-        for (AssignProject project : assignProjects)
-        {
-            projectList.add(projectRepository.getById(project.getProjectsId()));
+        for (AssignProject project : assignProjects) {
+            projectList.add(teamMemberService.getProjectById(project.getProjectsId()));
         }
         model.addAttribute("projects", projectList);
     }
