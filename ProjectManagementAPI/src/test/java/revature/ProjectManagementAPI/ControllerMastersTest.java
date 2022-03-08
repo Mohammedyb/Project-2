@@ -86,8 +86,7 @@ public class ControllerMastersTest {
     @Test
     public void shouldReturnAllMeeting() throws Exception {
         List<Meeting> meetingList = new ArrayList<>();
-        Meeting meeting = new Meeting(1, 1, 1, "NONE",
-                1.5, "NONE", new Timestamp(System.currentTimeMillis())/*, Arrays.asList("one", "two")*/);
+        Meeting meeting = new Meeting(1, 1, new Timestamp(System.currentTimeMillis()), 1, "meeting", "GOOGLE", 1.5, "NONE");
         meetingList.add(meeting);
 
         given(masterService.getAllMeeting()).willReturn(meetingList);
@@ -150,8 +149,7 @@ public class ControllerMastersTest {
 
     @Test
     public void shouldCreateMeeting() throws Exception {
-        Meeting meeting = new Meeting(1,1,1, "test",
-                1.5, "test", new Timestamp(System.currentTimeMillis()));
+        Meeting meeting = new Meeting(1, 1, new Timestamp(System.currentTimeMillis()), 1, "meeting", "GOOGLE", 1.5, "NONE");
         when(masterService.createMeeting(any(Meeting.class))).thenReturn(meeting);
 
         ResultActions response = mockMvc.perform(post("/master/newmeeting")

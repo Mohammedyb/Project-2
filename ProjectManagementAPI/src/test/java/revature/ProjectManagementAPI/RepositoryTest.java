@@ -38,9 +38,7 @@ class RepositoryTest {
     private final AssignProject assignProject = new AssignProject(1,1,"test",
             1,"test");
 
-    private final Meeting meeting = new Meeting(1, 1, 1, "NONE",
-            1.5, "NONE",
-            new Timestamp(System.currentTimeMillis())/*, Arrays.asList("one", "two")*/);
+    private final Meeting meeting = new Meeting(1, 1, new Timestamp(System.currentTimeMillis()), 1, "meeting", "GOOGLE", 1.5, "NONE");
 
     private final Project project = new Project(1,"test", 1, "test",
             "test", "test");

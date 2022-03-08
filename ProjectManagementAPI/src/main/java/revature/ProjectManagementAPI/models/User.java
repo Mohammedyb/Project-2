@@ -40,4 +40,18 @@ public class User {
     @Column(name = "auth_provider")
     private AuthenticationProvider authProvider;
 
+    @Column(name = "refresh_token")
+    private String refreshToken;
+
+    public User(Integer id, String email, String password, String name, Project projects, Role roles, AuthenticationProvider authProvider) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.projects = projects;
+        this.roles = roles;
+        this.authProvider = authProvider;
+        this.refreshToken = "NONE";
+    }
+
 }
