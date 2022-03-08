@@ -40,12 +40,14 @@ metadata:
 spec:
   rules:
     - http:
-        paths:
-          - path: /master(/|$)(.*)
-            backend:
-              service:
-                name: pm-service
-                port: 80
+      paths:
+        - path: /master(/|$)(.*)
+  defaultBackend:
+    service:
+      name: demo-service
+      port:
+        number: 8080
+
 ---
 apiVersion: v1
 kind: Service
