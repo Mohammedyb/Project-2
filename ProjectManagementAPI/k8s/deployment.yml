@@ -36,8 +36,8 @@ spec:
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
-  metadata:
-    name: jenkins
+metadata:
+  name: pmcontroller
     annotations:
       nginx.ingress.kubernetes.io/rewrite-target: "/master"
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
