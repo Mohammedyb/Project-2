@@ -70,20 +70,19 @@ ALTER TABLE MEETINGS ADD COLUMN meeting_length decimal NOT NULL default 1.5;
 ALTER TABLE MEETINGS ADD COLUMN meeting_link varchar NOT NULL DEFAULT 'NONE';
 ALTER TABLE MEETINGS ADD COLUMN timestamp timestamp;
 ALTER TABLE PROJECTS ADD COLUMN meeting_calendar_id varchar NOT NULL DEFAULT 'NONE';
-ALTER TABLE MEETINGS ADD COLUMN attendees varchar[];
 
 
 
 insert into ROLES (role) values ('Project Manager'), ('Team Member');
-insert into PROJECTS (name, project_manager_id ,project_manager, project_description,deadline) values ('Equifax Mobile Credit Report App', 4, 'August Duet', 'Creating a mobile credit report for Equifax', '2022-03-04');
+insert into PROJECTS (name, project_manager_id ,project_manager, project_description,deadline) values ('Equifax Mobile Credit Report App', 1, 'August Duet', 'Creating a mobile credit report for Equifax', '2022-03-04');
 insert into USERS (email, password, name, project_id, role) values ('project02sender@gmail.com', 'password123', 'August Duet', 1,1);
 insert into USERS (email, password, name, project_id, role) values ('christianphall@gmail.com', 'password123', 'Christian Hall', 1,2);
 insert into USERS (email, password, name, project_id, role) values ('jiaying.li@revature.net', '123456', 'Jia ying Li', 1, 2);
 insert into meeting_type (meeting_type) values ('Daily Standup'), ('Sprint Review'),('Sprint Planning');
-insert into meetings (project_id, meeting_type) values (2, 4);
+insert into meetings (project_id, meeting_type) values (1, 1);
 insert into tasks (name, description, due_date, due_time, assigned_user, project_id) values ('Setup Database', 'Setup Postgresql database with GCP and implement schema.' ,'2022-02-26', '11:30:00', 2, 1);
-insert into assign_project (projects_id, project_manager, assign_user_id, assign_user_name) values (4, 'August Duet', 5, 'Christian Hall');
-insert into task_progress (assign_task_id, projects_id, progress_status, task_comment) values (5, 2, 'DONE', 'completed and push to github');
+insert into assign_project (projects_id, project_manager, assign_user_id, assign_user_name) values (1, 'August Duet', 2, 'Christian Hall');
+insert into task_progress (assign_task_id, projects_id, progress_status, task_comment) values (1, 1, 'DONE', 'completed and push to github');
 
 alter sequence ROLES_id_seq restart with 1;
 alter sequence MEETINGS_id_seq restart with 1;
@@ -115,3 +114,9 @@ WHERE id=2;
 
 insert into tasks (name, description, due_date, due_time, assigned_user, project_id) values ('Setup Database', 'Setup Postgresql database with GCP and implement schema.' ,'2022-02-26', '11:30:00', 5, 1);
 insert into tasks (name, description, due_date, due_time, assigned_user, project_id) values ('Setup Database', 'Setup Postgresql database with GCP and implement schema.' ,'2022-02-26', '11:30:00', 5, 1);
+
+UPDATE public.meetings
+SET project_id=1, meeting_type=1, meeting_calendar_id='NONE', meeting_length=1.5, meeting_link='NONE', "timestamp"='2022-03-08T08:30:00-05:00', attendees=NULL
+WHERE id=1;
+
+

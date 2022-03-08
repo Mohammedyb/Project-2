@@ -32,7 +32,7 @@ public class TeamMemberService {
 
     private User activeUser;
 
-    private ProjectRepository projectRepostiory;
+    private ProjectRepository projectRepository;
 
     @Autowired
     public TeamMemberService(TaskRepository taskRepository, MeetingRepository meetingRepository,
@@ -43,7 +43,7 @@ public class TeamMemberService {
         this.taskProgressRepository = taskProgressRepository;
         this.userRepository = userRepository;
         this.assignRepository = assignRepository;
-        this.projectRepostiory = projectRepository;
+        this.projectRepository = projectRepository;
     }
 
     public void setTaskRepository(TaskRepository taskRepository) {
@@ -122,8 +122,7 @@ public class TeamMemberService {
     }
 
     public Project getProjectById(Integer projId){
-        return projectRepostiory.getById(projId);
-
+        return projectRepository.getById(projId);
     }
 
     /**

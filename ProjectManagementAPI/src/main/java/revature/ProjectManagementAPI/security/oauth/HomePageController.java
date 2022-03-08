@@ -87,6 +87,7 @@ public class HomePageController {
         for (AssignProject project : assignProjects) {
             projectList.add(teamMemberService.getProjectById(project.getProjectsId()));
         }
+        /*Project finalProject = projectList;*/
         model.addAttribute("projects", projectList);
     }
 

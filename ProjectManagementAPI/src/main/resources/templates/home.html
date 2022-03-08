@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -229,27 +229,30 @@
                         <th class="table-grid">Deadline</th>
                     </thead>
                     <tbody>
-                        <td th:each="project: ${projects}" class="p-2 table-grid"/>
+                        <tr th:each="project: ${projects}">
                             <td th:text="${project.name}" class="p-2 table-grid"/>
                             <td th:text="${project.projectManager}" class="p-2 table-grid"/>
                             <td th:text="${project.id}" class="p-2 table-grid"/>
                             <td th:text="${project.projectDescription}" class="p-2"/>
                             <td th:text="${project.deadline}" class="p-2"/>
+                        </tr>
                     </tbody>
                 </table>
                 <div>
                     <h3 class="text-center">Tasks</h3>
                     <div class="bg-black-2 p-2 col-sm-3 float-left">
-                        <p th:each="task: ${tasks}">
+                        <tr th:each="task: ${tasks}">
                             <p th:text="${task.name}"/>
                             <p th:text="${task.description}"/>
                             <p th:text="${task.dueDate}"/>
                             <p th:text="${task.dueTime}"/>
+                        </tr>
                         <hr>
                         <h4 class="text-center">Task Progress</h4>
-                        <p th:each="taskProg: ${taskProgress}">
+                        <tr th:each="taskProg: ${taskProgress}">
                             <p th:text="${taskProg.progressStatus}"/>
                             <p th:text="${taskProg.taskComment}"/>
+                        </tr>
                         <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">
                             <label>Progress Status:</label>
                             <input type="text" th:field="*{progressStatus}" class="text-color-blk form-control mb-2" />
@@ -264,78 +267,22 @@
                             </table>
                         </form>
                     </div>
-                    <div class="bg-black-2 p-2 col-sm-3 task-left-space">
-                        <p th:each="task: ${tasks}">
-                            <td th:text="${task.name}"/>
-                            <td th:text="${task.description}"/>
-                            <td th:text="${task.dueDate}"/>
-                            <td th:text="${task.dueTime}"/>
-                        <hr>
-                        <h4 class="text-center">Task Progress</h4>
-                        <p th:each="taskProg: ${taskProgress}">
-                            <p th:text="${taskProg.progressStatus}"/>
-                            <p th:text="${taskProg.taskComment}"/>
-                        <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">
-                            <label>Progress Status:</label>
-                            <input type="text" th:field="*{progressStatus}" class="text-color-blk form-control mb-2" />
-
-                            <label>Comment:</label>
-                            <input type="text" th:field="*{taskComment}" class="text-color-blk form-control mb-2"/>
-                                <tr>
-                                    <td>Project ID:</td>
-                                    <td><input type="number" th:field="*{projectsId}" /></td>
-                                </tr>
-                            <input type="submit" value="Submit" class="btn btn-primary" />
-                            </table>
-                        </form>
-                    </div>
-
-                    <div class="bg-black-2 p-2 col-sm-3 float-right">
-                        <p th:each="task: ${tasks}">
-                            <p th:text="${task.name}"/>
-                            <p th:text="${task.description}"/>
-                            <p th:text="${task.dueDate}"/>
-                            <p th:text="${task.dueTime}"/>
-                        <hr>
-                        <h4 class="text-center">Task Progress</h4>
-                        <p th:each="taskProg: ${taskProgress}">
-                            <p th:text="${taskProg.progressStatus}"/>
-                            <p th:text="${taskProg.taskComment}"/>
-
-                        <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">
-                            <label>Progress Status:</label>
-                            <input type="text" th:field="*{progressStatus}" class="text-color-blk form-control mb-2" />
-
-                            <label>Comment:</label>
-                            <input type="text" th:field="*{taskComment}" class="text-color-blk form-control mb-2"/>
-                                <tr>
-                                    <td>Project ID:</td>
-                                    <td><input type="number" th:field="*{projectsId}" /></td>
-                                </tr>
-                            <input type="submit" value="Submit" class="btn btn-primary" />
-                            </table>
-                        </form>
-                    </div>
-
                 </div>
             </div>
             <h3 class="text-center">Meetings</h3>
                 <div class="bg-black-2 p-2">
-                    <p th:each="meeting: ${meetings}">
-                    <p th:switch="${meeting.meetingType}">
-                        <span th:case="'4'" th:text="'Daily Standup'"/>
-                        <span th:case="'5'" th:text="'Sprint Review'"/>
-                        <span th:case="'6'" th:text="'Daily Standup'"/>
-                    </p>
+                    <tr th:each="meeting: ${meetings}">
+                        <p th:switch="${meeting.meetingType}">
+                            <span th:case="'1'" th:text="'Daily Standup'"/>
+                            <span th:case="'2'" th:text="'Sprint Review'"/>
+                            <span th:case="'3'" th:text="'Daily Standup'"/>
+                        </p>
+                        <p th:text="${meeting.timestamp}"> Meeting-Length: </p>
+                        <p th:text="${meeting.meetingLength}"> Meeting-Length: </p>
+                    </tr>
                 </div>
         </div>
     </div>
-
-
-
-
-
-
 <!--        <form action="#" th:action="@{/progress}" th:object="${newProgress}" method="post">-->
 <!--            <table border="1">-->
 <!--                <tr>-->
@@ -356,12 +303,6 @@
 <!--            </table>-->
 <!--        </form>-->
 
-        <p th:each="meeting: ${meetings}">
-            <p th:switch="${meeting.meetingType}">
-                <span th:case="'4'" th:text="'Daily Standup'"/>
-                <span th:case="'5'" th:text="'Sprint Review'"/>
-                <span th:case="'6'" th:text="'Daily Standup'"/>
-        </p>
     </div>
     <footer class="border-top footer text-light nav-bg">
         <div class="container">
