@@ -50,7 +50,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: master-svc
+                name: pm-service
                 port:
                   number: 80
 #          - path: /
