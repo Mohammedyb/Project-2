@@ -36,25 +36,20 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: pm-ingress
+  name: my-ingress-2
 spec:
+  tls:
+    - secretName: PM_SECRET
   rules:
     - http:
         paths:
-          - path: /*
+          - path: /master
             pathType: ImplementationSpecific
             backend:
               service:
                 name: pm-service
                 port:
-                  number: 8080
-          - path: /discounted
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: pm-service
-                port:
-                  number: 8080
+                  number: 60000
 
 #---
 #apiVersion: v1
