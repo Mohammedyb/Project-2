@@ -35,23 +35,27 @@ spec:
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-annotations:
-  cloud.google.com/neg: '{"ingress": true}'
 metadata:
   name: pm-ingress
 spec:
-  defaultBackend:
-    service:
-      name: pm-service
-      port:
-        number: 8080
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: coffee-svc
-#                port:
-#                  number: 80
+  rules:
+    - http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pm-service
+                port:
+                  number: 8080
+          - path: /discounted
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pm-service
+                port:
+                  number: 80
+
 #---
 #apiVersion: v1
 #kind: Service
