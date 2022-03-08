@@ -40,10 +40,6 @@ metadata:
 spec:
   rules:
     - host: marathon.api.com
-      http:
-        paths:
-          - path: /master
-            pathType: Prefix
             backend:
               service:
                 name: pm-service
