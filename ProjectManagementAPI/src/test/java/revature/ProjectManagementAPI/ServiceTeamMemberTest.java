@@ -64,8 +64,7 @@ class ServiceTeamMemberTest {
             "test");
 
 
-    private final Meeting meeting = new Meeting(1, 1, 1, "NONE",
-            1.5, "NONE", new Timestamp(System.currentTimeMillis()));
+    private final Meeting meeting = new Meeting(1, 1, new Timestamp(System.currentTimeMillis()), 1, "meeting", 1.5, "NONE");
 
     private final Task task = new Task(1,"test","test","test","test",
             1,1);

@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "meetings")
-///@TypeDef(name = "list-array", typeClass = ListArrayType.class )
 public class Meeting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,22 +26,21 @@ public class Meeting {
     @Column(name = "project_id")
     private Integer projectId;
 
+    @Column(name = "timestamp")
+    private Timestamp timestamp;
+
     @Column(name = "meeting_type")
     private Integer meetingType;
 
     @Column(name = "meeting_calendar_id")
     private String meetingCalendarId;
 
+    /*@Column(name = "auth_provider")
+    private String authProvider;*/
+
     @Column(name = "meeting_length")
     private double meetingLength;
 
     @Column(name = "meeting_link")
     private String meetingLink;
-
-    @Column(name = "timestamp")
-    private Timestamp timestamp;
-
-    /*@Type(type = "list-array")
-    @Column(name = "attendees", columnDefinition = "text[]")
-    private List<String> attendees; */
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import revature.ProjectManagementAPI.DAO.*;
 import revature.ProjectManagementAPI.models.*;
 
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class MasterService {
 
     private TaskProgressRepository taskProgressRepository;
 
-    //private EmailService emailService;
+    private EmailService emailService;
 
     private UserRepository userRepository;
 
@@ -40,13 +41,13 @@ public class MasterService {
 
     @Autowired
     public MasterService(ProjectRepository projectRepository, AssignRepository assignRepository, MeetingRepository meetingRepository,
-                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository, /*EmailService emailService, */UserRepository userRepository) {
+                         TaskRepository taskRepository, TaskProgressRepository taskProgressRepository, EmailService emailService, UserRepository userRepository) {
         this.projectRepository = projectRepository;
         this.assignRepository = assignRepository;
         this.meetingRepository = meetingRepository;
         this.taskRepository = taskRepository;
         this.taskProgressRepository = taskProgressRepository;
-        //this.emailService = emailService;
+        this.emailService = emailService;
         this.userRepository = userRepository;
     }
 
@@ -84,22 +85,6 @@ public class MasterService {
         return projectRepository.save(project);
     }
 
-    /**
-     * Creates a new project and additionally initializes the calendar for that project
-     * @param project project post the manager created
-     * @return new project with project name, assigned manager, manager id, project description and deadline
-
-    public Project newProjectWithGoogle(Project project) {
-        /*Create the projects calendar
-        try {
-            project.setMeetingCalendarId(emailService.createCalendar(project));
-        } catch (Exception e) {
-            log.error("ERROR while trying to create project calendar: " + e.getMessage());
-            return projectRepository.save(project);
-        }
-        return projectRepository.save(project);
-    }
-    */
 
     /**
      * Get all project created
@@ -134,19 +119,29 @@ public class MasterService {
      * Creates a new meeting, and additionally adds it to the relevant project calendar
      * @param meeting meeting post the manager created
      * @return new meeting post with project id, meeting date, meeting time and meeting type
-
-    public Meeting createMeetingWithGoogle(Meeting meeting) {
+    */
+    public String createMeetingWithGoogle(NewMeetingDTO meeting) {
         log.info("Creating meeting with google calendar meeting: {}", meeting);
+        Meeting createdMeeting = new Meeting();
+        createdMeeting.setMeetingLength(meeting.getMeetingLength());
+
+        createdMeeting.setMeetingCalendarId("primary");
+        //createdMeeting.setAuthProvider("GOOGLE");
+        createdMeeting.setProjectId(meeting.getProjectId());
+        createdMeeting.setTimestamp(new Timestamp(meeting.getStartDate().getValue()));
         try {
-            meeting.setMeetingLink(emailService.createMeeting(meeting));
+            //createdMeeting.setMeetingLink(emailService.createMeeting(meeting));
+            meetingRepository.save(createdMeeting);
         } catch (Exception e) {
             log.error("ERROR trying to create new google meeting - proceeding without google event: " + e.getMessage());
-            meeting.setMeetingLink("NONE");
-            return meetingRepository.save(meeting);
+            createdMeeting.setMeetingLink("NONE");
+            meetingRepository.save(createdMeeting);
+            return "NONE";
         }
-        return meetingRepository.save(meeting);
+        meetingRepository.save(createdMeeting);
+        return "NONE";
     }
-    */
+
     /**
      * Create new task
      *
