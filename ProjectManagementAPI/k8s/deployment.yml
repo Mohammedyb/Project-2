@@ -50,7 +50,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: pm-service
+                name: demo-service
                 port:
                   number: 8080
 #          - path: /
