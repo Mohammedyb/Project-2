@@ -42,8 +42,7 @@ spec:
 defaultBackend:
   service:
     name: pm-service
-     port:
-     number: 8080
+    port: 8080
 
 ---
 apiVersion: v1
